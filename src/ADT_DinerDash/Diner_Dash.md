@@ -1,6 +1,6 @@
 Petunjuk Menjalankan Diner Dash:
 
-cara compile : gcc dinerdash.c queue.c -o [program]
+cara compile : gcc dinerdash.c queue.c driver.c -o [program]
 menjalankan program : ./[program]
 [] bisa diganti dengan apa saja
 
