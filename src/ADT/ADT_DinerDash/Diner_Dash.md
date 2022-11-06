@@ -1,6 +1,6 @@
 Petunjuk Menjalankan Diner Dash:
 
-cara compile : gcc dinerdash.c queue.c driver.c -o [program]
+cara compile : gcc dinerdash.c ../queue/queue.c driver.c ../mesinkarakter/mesinkarakter.c ../mesinkata/mesinkata.c -o [program]
 menjalankan program : ./[program]
 [] bisa diganti dengan apa saja
 
@@ -14,4 +14,4 @@ Ada beberapa aturan dalam permainan :
 3. Setiap pemain hanya dapat memasak 5 makanan dalam sekali waktu
 4. Pemain bebas memasakan makanan yang ada diantrian
 5. Pemain hanya dapat menyajikan makanan untuk antrian terdepan
-6. Jika ada kesalahan dalam cook, serve, dan command maka akan dianggap satu putaran (turn)
+6. Jika ada kesalahan dalam cook, serve, dan command maka tidak akan dianggap satu putaran (turn)
