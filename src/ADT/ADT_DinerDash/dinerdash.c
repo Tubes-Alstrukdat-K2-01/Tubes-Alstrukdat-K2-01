@@ -1,4 +1,5 @@
 #include "dinerdash.h"
+#include "../mesinkata/mesinkata.h"
 #include <stdio.h>
 #include <time.h>
 #include <stdlib.h>
@@ -104,11 +105,11 @@ void cook(Queue qpesan, Queue *qmasak, int makanan){
         }
         else{
             if(availablecook(*qmasak)){
+                printf("Berhasil memasak M%d\n",makanan);
                 turn(qmasak);
                 int durasi,ketahaan,harga;
                 dequeueMember(&qpesan, &makanan, &durasi, &ketahaan, &harga);
                 enqueue(qmasak,makanan,durasi,ketahaan,harga);
-                printf("Berhasil memasak M%d\n",makanan);
             }
             else{
                 printf("Kapasitas memasak telah mencapai batas!\n");
@@ -163,6 +164,7 @@ void serve(Queue *qpesan, Queue *qmasak, int makanan, int *pelayanan, int *saldo
         }
         if((*qmasak).buffer[idx].durasi == 0){
             if(HEAD_makanan(*qpesan) == makanan){
+                printf("M%d berhasil diantar\n",makanan);
                 turn(qmasak);
                 int durasi, ketahanan, harga;
                 durasi = rand()%5 + 1;
@@ -264,6 +266,7 @@ void dinerdash(){
     Queue qpesan, qmasak;
     CreateQueue(&qpesan); CreateQueue(&qmasak);
     int makanan=0, durasi, ketahanan, harga;
+    srand(time(0));
     for(makanan; makanan < 3; makanan++){
         durasi = rand()%5 + 1;
         ketahanan = rand()%5 + 1;
@@ -280,30 +283,55 @@ void dinerdash(){
         printf("\n");
         displayDisajikan(qmasak);
         printf("\n");
-        char command[10];
-        int m;
+        char command[50];
+        int m = 0;
         printf("MASUKKAN COMMAND: ");
-        scanf(" %s M%d",&command,&m);
-        if((command[0] == 'S' || command[0] == 's') && (command[1] == 'E' || command[1] == 'e') && (command[2] == 'R' || command[2] == 'r') && (command[3] == 'V' || command[3] == 'v') && (command[4] == 'E' || command[4] == 'e')){
-            serve(&qpesan, &qmasak, m, &pelayanan, &saldo, &makanan);
+        STARTWORD();
+        int i;
+        for (i=0; i<currentWord.Length; i++){
+            command[i] = currentWord.TabWord[i];
         }
-        else if((command[0] == 'C' || command[0] == 'c') && (command[1] == 'O' || command[1] == 'o') && (command[2] == 'O' || command[2] == 'o') && (command[3] == 'K' || command[3] == 'k')){
-            if((isMember(qpesan,m)) && (!isMember(qmasak,m)) && (availablecook(qmasak))){
-                cook(qpesan,&qmasak,m);
-                durasi = rand()%5 + 1;
-                ketahanan = rand()%5 + 1;
-                harga = (rand()%41 + 10)*1000;
-                enqueue(&qpesan, makanan, durasi, ketahanan, harga);
-                makanan++;
+        ADVWORD();
+        boolean invalid = false;
+        for (i=1; i<currentWord.Length; i++){
+            if(currentWord.TabWord[i] >= '0' && currentWord.TabWord[i] <= '9'){
+                m *= 10;
+                m += (int)(currentWord.TabWord[i]-48);
             }
-            if(!isMember(qpesan,m)){
-                printf("Makanan belum dimasak atau tidak ada dalam pesanan\n");
+            else{
+                invalid = true;
+            }
+        }
+        ADVWORD();
+        if(isEndWord() && (!invalid)){
+            if((command[0] == 'S' || command[0] == 's') && (command[1] == 'E' || command[1] == 'e') && (command[2] == 'R' || command[2] == 'r') && (command[3] == 'V' || command[3] == 'v') && (command[4] == 'E' || command[4] == 'e')){
+                serve(&qpesan, &qmasak, m, &pelayanan, &saldo, &makanan);
+            }
+            else if((command[0] == 'C' || command[0] == 'c') && (command[1] == 'O' || command[1] == 'o') && (command[2] == 'O' || command[2] == 'o') && (command[3] == 'K' || command[3] == 'k')){
+                if((isMember(qpesan,m)) && (!isMember(qmasak,m)) && (availablecook(qmasak))){
+                    cook(qpesan,&qmasak,m);
+                    durasi = rand()%5 + 1;
+                    ketahanan = rand()%5 + 1;
+                    harga = (rand()%41 + 10)*1000;
+                    enqueue(&qpesan, makanan, durasi, ketahanan, harga);
+                    makanan++;
+                }
+                if(!isMember(qpesan,m)){
+                    printf("Makanan belum dimasak atau tidak ada dalam pesanan\n");
+                }
+            }
+            else{
+                printf("INVALID COMMAND!\n");
             }
         }
         else{
             printf("INVALID COMMAND!\n");
         }
         printf("==========================================================\n\n");
+        saldo = saldo/1000;
+        saldo = saldo*1000;
     }
+    saldo = saldo/1000;
+    saldo = saldo*1000;
     printf("Game Over!, SALDO ANDA: %d\n",saldo);
 }

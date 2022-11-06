@@ -1,5 +1,8 @@
 {
     "files.associations": {
-        "boolean.h": "c"
+        "*.py": "python",
+        "boolean.h": "c",
+        "mesinkarakter.h": "c",
+        "stdio.h": "c"
     }
 }
