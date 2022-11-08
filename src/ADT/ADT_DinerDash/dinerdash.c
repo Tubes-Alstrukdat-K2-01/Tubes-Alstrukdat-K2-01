@@ -165,17 +165,17 @@ void serve(Queue *qpesan, Queue *qmasak, int makanan, int *pelayanan, int *saldo
         if((*qmasak).buffer[idx].durasi == 0){
             if(HEAD_makanan(*qpesan) == makanan){
                 printf("M%d berhasil diantar\n",makanan);
-                turn(qmasak);
                 int durasi, ketahanan, harga;
+                dequeue(qpesan,&makanan,&durasi,&ketahanan,&harga);
+                *saldo += harga;
+                dequeueMember(qmasak,&makanan,&durasi,&ketahanan,&harga);
+                *pelayanan++;
+                turn(qmasak);
                 durasi = rand()%5 + 1;
                 ketahanan = rand()%5 + 1;
                 harga = (rand()%41 + 10)*1000;
                 enqueue(qpesan,*m,durasi,ketahanan,harga);
                 *m += 1;
-                dequeue(qpesan,&makanan,&durasi,&ketahanan,&harga);
-                *saldo += harga;
-                dequeueMember(qmasak,&makanan,&durasi,&ketahanan,&harga);
-                *pelayanan++;
             }
             else{
                 printf("M%d belum dapat disajikan karena M%d belum selesai\n",makanan,HEAD_makanan(*qpesan));
@@ -293,16 +293,18 @@ void dinerdash(){
         }
         ADVWORD();
         boolean invalid = false;
-        for (i=1; i<currentWord.Length; i++){
-            if(currentWord.TabWord[i] >= '0' && currentWord.TabWord[i] <= '9'){
-                m *= 10;
-                m += (int)(currentWord.TabWord[i]-48);
+        if(!isEndWord()){
+            for (i=1; i<currentWord.Length; i++){
+                if(currentWord.TabWord[i] >= '0' && currentWord.TabWord[i] <= '9'){
+                    m *= 10;
+                    m += (int)(currentWord.TabWord[i]-48);
+                }
+                else{
+                    invalid = true;
+                }
             }
-            else{
-                invalid = true;
-            }
+            ADVWORD();
         }
-        ADVWORD();
         if(isEndWord() && (!invalid)){
             if((command[0] == 'S' || command[0] == 's') && (command[1] == 'E' || command[1] == 'e') && (command[2] == 'R' || command[2] == 'r') && (command[3] == 'V' || command[3] == 'v') && (command[4] == 'E' || command[4] == 'e')){
                 serve(&qpesan, &qmasak, m, &pelayanan, &saldo, &makanan);
@@ -320,6 +322,15 @@ void dinerdash(){
                     printf("Makanan belum dimasak atau tidak ada dalam pesanan\n");
                 }
             }
+            else if((command[0] == 'S' || command[0] == 's') && (command[1] == 'K' || command[1] == 'k') && (command[2] == 'I' || command[2] == 'i') && (command[3] == 'P' || command[3] == 'p')){
+                printf("Berhasil Melakukan SKIP\n");
+                turn(&qmasak);
+                durasi = rand()%5 + 1;
+                ketahanan = rand()%5 + 1;
+                harga = (rand()%41 + 10)*1000;
+                enqueue(&qpesan, makanan, durasi, ketahanan, harga);
+                makanan++;
+            }
             else{
                 printf("INVALID COMMAND!\n");
             }
@@ -328,10 +339,10 @@ void dinerdash(){
             printf("INVALID COMMAND!\n");
         }
         printf("==========================================================\n\n");
-        saldo = saldo/1000;
+        saldo = (saldo+1)/1000;
         saldo = saldo*1000;
     }
-    saldo = saldo/1000;
+    saldo = (saldo+1)/1000;
     saldo = saldo*1000;
     printf("Game Over!, SALDO ANDA: %d\n",saldo);
 }
