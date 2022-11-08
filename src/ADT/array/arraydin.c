@@ -8,7 +8,7 @@
  */
 ArrayDin MakeArrayDin(){
     ArrayDin p;
-    p.A = (ElType*) malloc (InitialSize*sizeof(ElType));
+    p.A = (Word*) malloc (InitialSize*sizeof(Word));
     p.Capacity = InitialSize;
     p.Neff = 0;
     return p;
@@ -45,7 +45,7 @@ int Length(ArrayDin array){
  * Mengembalikan elemen array L yang ke-I (indeks lojik).
  * Prekondisi: array tidak kosong, i di antara 0..Length(array).
  */
-ElType Get(ArrayDin array, IdxType i){
+Word Get(ArrayDin array, IdxType i){
     return array.A[i];
 }
 
@@ -61,9 +61,9 @@ int GetCapacity(ArrayDin array){
  * Fungsi untuk menambahkan elemen baru di index ke-i
  * Prekondisi: array terdefinisi, i di antara 0..Length(array).
  */
-void InsertAt(ArrayDin *array, ElType el, IdxType i){
+void InsertAt(ArrayDin *array, Word el, IdxType i){
     if ((*array).Neff == (*array).Capacity){
-        ElType *list = (ElType*) malloc (((*array).Capacity*2)*sizeof(ElType));
+        Word *list = (Word*) malloc (((*array).Capacity*2)*sizeof(Word));
         IdxType p=0;
         for (p; p<(*array).Neff; p++){
             list[p] = Get(*array , p);
@@ -74,7 +74,7 @@ void InsertAt(ArrayDin *array, ElType el, IdxType i){
     }
     IdxType j=(*array).Neff;
     for (j;j>i;j--){
-        (*array).A[j]=(*array).A[j-1];
+        CopyWord(&(*array).A[j-1] , &(*array).A[j]);
     }
     (*array).A[i]=el;
     (*array).Neff+=1;
@@ -88,8 +88,16 @@ void InsertAt(ArrayDin *array, ElType el, IdxType i){
 void DeleteAt(ArrayDin *array, IdxType i){
     IdxType j = i;
     while (j<(*array).Neff-1){
-        (*array).A[j] = (*array).A[j+1];
+        CopyWord(&(*array).A[j+1] , &(*array).A[j]);
         j++;
     }
     array->Neff--;
+}
+
+void CopyWord(Word *Win, Word *Wout){
+    (*Wout).Length = (*Win).Length;
+    int i;
+    for(i=0; (*Win).Length; i++){
+        (*Wout).Tab[i] = (*Win).Tab[i];
+    }
 }

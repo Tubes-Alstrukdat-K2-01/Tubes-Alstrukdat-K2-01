@@ -7,11 +7,13 @@
 #define false 0
 
 #define InitialSize 10
-
-typedef int IdxType;
-typedef int ElType;
 typedef struct {
-    ElType *A;
+    char Tab[50];
+    int Length;
+} Word;
+typedef int IdxType;
+typedef struct {
+    Word *A;
     int Capacity;
     int Neff;
 } ArrayDin;
@@ -46,7 +48,7 @@ int Length(ArrayDin array);
  * Mengembalikan elemen array L yang ke-I (indeks lojik).
  * Prekondisi: array tidak kosong, i di antara 0..Length(array).
  */
-ElType Get(ArrayDin array, IdxType i);
+Word Get(ArrayDin array, IdxType i);
 
 /**
  * Fungsi untuk mendapatkan kapasitas yang tersedia.
@@ -58,12 +60,17 @@ int GetCapacity(ArrayDin array);
  * Fungsi untuk menambahkan elemen baru di index ke-i
  * Prekondisi: array terdefinisi, i di antara 0..Length(array).
  */
-void InsertAt(ArrayDin *array, ElType el, IdxType i);
+void InsertAt(ArrayDin *array, Word el, IdxType i);
 
 /**
  * Fungsi untuk menghapus elemen di index ke-i ArrayDin
  * Prekondisi: array terdefinisi, i di antara 0..Length(array).
  */
 void DeleteAt(ArrayDin *array, IdxType i);
+
+/*
+  Fungsi untuk menyalin semua yang ada di Win ke Wout
+*/
+void CopyWord(Word *Win, Word *Wout);
 
 #endif
