@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include <math.h>
-#include "mesinkata.c"
+#include "../mesinkata/mesinkata.h"
 
 void RNG() {
     int giliran,skor,angka,max,count;
@@ -81,7 +81,3 @@ void RNG() {
     }
 }
 
-int main() {
-    RNG();
-    return 0;
-}
