@@ -8,7 +8,26 @@ void LOAD(ArrayDin *TabGame, boolean *start, char *filename){
         MakeArrayDin(TabGame);
         FILE *pita;
         if((pita = fopen(filename,"r")) == NULL){
-            
+            printf("File Konfigurasi tidak ditemukan ");
+        }
+        else{
+            char data[255];
+            fgets(data,255,pita);
+            int n = 0, i = 0;
+            while(data[i] != '\0'){
+                if(data[i] >= '0' && data[i] <= '9'){    
+                    n *= 10;
+                    n += (int)(data[i]-48);
+                }
+                i++;
+            }
+            for(i=0; i<n; i++){
+                fgets(data,255,pita);
+                Word w;
+                MakeWord(&w);
+                CopyStringtoWord(&w, data);
+                InsertAt(TabGame,w,i);
+            }
         }     
     }
 }
