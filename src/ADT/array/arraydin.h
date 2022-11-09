@@ -73,4 +73,16 @@ void DeleteAt(ArrayDin *array, IdxType i);
 */
 void CopyWord(Word *Win, Word *Wout);
 
+/*
+  Fungsi untuk membuat MakeWord dengan Word kosong
+  Word Kosong ditandai dengan Word.Length = 0;
+*/
+void MakeWord(Word *W);
+
+/*
+  I.S : W kosong dan s berisi
+  Fungsi untuk mengkopi semua yang ada di string ke word
+*/
+void CopyStringtoWord(Word *W, char *s);
+
 #endif
