@@ -50,7 +50,18 @@ void RNG() {
             printf("               TEBAKAN: ");
         }
         //STARTWORD();
-        scanf("%d",&tebakan);
+        STARTWORD();
+        while(isEndWord()){
+            STARTWORD();
+        }
+        tebakan = 0;
+        int i;
+        for(i=0; i<currentWord.Length; i++){
+            if(currentWord.TabWord[i] >= '0' && currentWord.TabWord[i] <= '9'){
+                tebakan *= 10;
+                tebakan += (int)(currentWord.TabWord[i]-48);
+            }
+        }
         //int tebakan = atoi(currentWord.TabWord);
         //ADVWORD();
         if (tebakan > angka) {
