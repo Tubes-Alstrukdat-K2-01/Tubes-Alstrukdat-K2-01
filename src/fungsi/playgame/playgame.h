@@ -3,4 +3,6 @@
 #include "../../ADT/normalqueue/queue.h"
 
 void menuPlayGame(Queue *Q);
+
+void Play(Word W);
 #endif

@@ -1,16 +1,22 @@
 #ifndef __ARRAY_DINAMIK__
 #define __ARRAY_DINAMIK__
 
+
+
+
 // Boolean
-#define boolean unsigned char
-#define true 1
-#define false 0
+#include "../boolean.h"
+#include "../word/word.h"
 
 #define InitialSize 10
+<<<<<<< HEAD
 typedef struct {
     char Tab[50];
     int Length;
 } Kata;
+=======
+
+>>>>>>> 3b0b826a7bb1b341a18d2c883f01faa6f72f2829
 typedef int IdxType;
 typedef struct {
     Kata *A;
@@ -71,6 +77,7 @@ void DeleteAt(ArrayDin *array, IdxType i);
 /*
   Fungsi untuk menyalin semua yang ada di Win ke Wout
 */
+<<<<<<< HEAD
 void CopyKata(Kata *Win, Kata *Wout);
 
 /*
@@ -90,5 +97,7 @@ void CopyStringtoKata(Kata *W, char *s);
   Fungsi untuk menambahkan anggota TabGame dengan game sebagai element terakhir
 */
 void InsertLast(ArrayDin *TabGame, Kata game);
+=======
+>>>>>>> 3b0b826a7bb1b341a18d2c883f01faa6f72f2829
 
 #endif

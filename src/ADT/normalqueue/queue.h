@@ -5,15 +5,12 @@
 #define QUEUE_H
 
 #include "../boolean.h"
-
+#include "../word/word.h"
 #define IDX_UNDEF -1
 #define CAPACITY 100
 
+
 /* Definisi elemen dan address */
-typedef struct {
-    char Tab[50];
-    int Length;
-} Word;
 typedef struct {
 	Word buffer[CAPACITY]; 
 	int idxHead;
