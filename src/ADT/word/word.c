@@ -19,6 +19,9 @@ void CopyStringtoWord(Word *W, char *s){
         (*W).Length++; 
         i++;
     }
+    for(i; i<50; i++){
+        (*W).Tab[i] = '\0';
+    } //jadiin null biar ga  overflow
 }
 boolean IsWordEqual(Word W1, Word W2){
     if(W1.Length != W2.Length){
