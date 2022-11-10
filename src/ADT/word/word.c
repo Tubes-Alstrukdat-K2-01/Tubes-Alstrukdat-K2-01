@@ -1,4 +1,5 @@
 #include "word.h"
+#include <stdlib.h>
 void CopyKata(Kata *Win, Kata *Wout){
     (*Wout).Length = (*Win).Length;
     int i;

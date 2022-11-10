@@ -2,6 +2,7 @@
 #define __WORD__
 
 #include "../boolean.h"
+
 typedef struct {
     char Tab[50];
     int Length;
