@@ -22,7 +22,7 @@ void menuQueueGame(Queue *q, ArrayDin arrayGames){
     int pil;
     printf("Nomor Game yang mau ditambahkan ke antrian: ");
     scanf("%d", &pil);
-    Word namaGame = Get(arrayGames, pil - 1);
+    Kata namaGame = Get(arrayGames, pil - 1);
     /* minta buat fungsi getnama game dari index */
     enqueue(q, namaGame);
 }

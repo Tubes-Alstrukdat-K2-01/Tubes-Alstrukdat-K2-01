@@ -2,7 +2,7 @@
 #define __HANGMAN_H
 #include "../ADT/array/arraydin.h"
 char toLower(char c);
-ArrayDin initWordlist();
+ArrayDin initKatalist();
 ArrayDin initDescList();
 
 

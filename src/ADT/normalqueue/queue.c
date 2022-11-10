@@ -13,9 +13,9 @@
 // #define CAPACITY 100
 
 // /* Definisi elemen dan address */
-// typedef int Word;
+// typedef int Kata;
 // typedef struct {
-// 	Word buffer[CAPACITY]; 
+// 	Kata buffer[CAPACITY]; 
 // 	int idxHead;
 // 	int idxTail;
 // } Queue;
@@ -61,7 +61,7 @@ int length(Queue q){
 /* Mengirimkan banyaknya elemen queue. Mengirimkan 0 jika q kosong. */
 
 /* *** Primitif Add/Delete *** */
-void enqueue(Queue *q, Word val){
+void enqueue(Queue *q, Kata val){
     if (isEmpty(*q)){
         IDX_HEAD(*q) = 0;
         IDX_TAIL(*q) = 0;
@@ -69,14 +69,14 @@ void enqueue(Queue *q, Word val){
     else{
         IDX_TAIL(*q) = (IDX_TAIL(*q)+1)%CAPACITY;
     }
-    CopyWord(&val,&TAIL(*q));
+    CopyKata(&val,&TAIL(*q));
 }
 /* Proses: Menambahkan val pada q dengan aturan FIFO */
 /* I.S. q mungkin kosong, tabel penampung elemen q TIDAK penuh */
 /* F.S. val menjadi TAIL yang baru, IDX_TAIL "mundur" dalam buffer melingkar. */
 
-void dequeue(Queue *q, Word *val){
-    CopyWord(&HEAD(*q),val);
+void dequeue(Queue *q, Kata *val){
+    CopyKata(&HEAD(*q),val);
     if (IDX_HEAD(*q) == IDX_TAIL(*q)){
         IDX_HEAD(*q) = IDX_UNDEF;
         IDX_TAIL(*q) = IDX_UNDEF;
@@ -138,7 +138,7 @@ void displayQueue(Queue q){
 /* Contoh : jika ada tiga elemen bernilai 1, 20, 30 akan dicetak: [1,20,30] */
 /* Jika Queue kosong : menulis [] */
 
-void CopyWord(Word *Win, Word *Wout){
+void CopyKata(Kata *Win, Kata *Wout){
     (*Wout).Length = (*Win).Length;
     int i;
     for(i=0; (*Win).Length; i++){

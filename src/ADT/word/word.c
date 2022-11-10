@@ -1,4 +1,4 @@
-#include "Word.h"
+#include "word.h"
 void CopyKata(Kata *Win, Kata *Wout){
     (*Wout).Length = (*Win).Length;
     int i;
@@ -19,13 +19,9 @@ void CopyStringtoKata(Kata *W, char *s){
         (*W).Length++; 
         i++;
     }
-<<<<<<< HEAD
-    (*W).Tab[i] = '\0';
-=======
     for(i; i<50; i++){
         (*W).Tab[i] = '\0';
     } //jadiin null biar ga  overflow
->>>>>>> 4c73686ed9d7f136d0595c3ee5eb984e24b55808
 }
 boolean IsKataEqual(Kata W1, Kata W2){
     if(W1.Length != W2.Length){
@@ -47,7 +43,7 @@ Kata StringtoKata(char *s){
     return W;
 }
 
-int length(char *string){
+int panjang(char *string){
     int i = 0;
     while(string[i] != '\0'){
         i++;
@@ -56,7 +52,7 @@ int length(char *string){
 }
 
 char* concat(char *s1, char *s2){
-    int n = length(s1) + length(s2);
+    int n = panjang(s1) + panjang(s2);
     char* result;
     result = (char*) malloc (n*sizeof(char));
     int i=0;

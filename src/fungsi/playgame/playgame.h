@@ -4,5 +4,5 @@
 
 void menuPlayGame(Queue *Q);
 
-void Play(Word W);
+void Play(Kata W);
 #endif

@@ -14,43 +14,43 @@ char toLower(char c){
         return c;
     }
 }
-ArrayDin initWordlist(){
+ArrayDin initKatalist(){
     ArrayDin A = MakeArrayDin();
     int i;
 
-    InsertAt(&A, StringtoWord("Lapar"),0);
-    InsertAt(&A, StringtoWord("Kenyang"),1);
-    InsertAt(&A, StringtoWord("Makan"),2);
+    InsertAt(&A, StringtoKata("Lapar"),0);
+    InsertAt(&A, StringtoKata("Kenyang"),1);
+    InsertAt(&A, StringtoKata("Makan"),2);
     return A;
 }
 ArrayDin initDescList(){
     ArrayDin A = MakeArrayDin();
     int i;
-    InsertAt(&A, StringtoWord("berasa ingin makan (karena perut kosong)"),0);
-    InsertAt(&A, StringtoWord("sudah puas makan"),1);
-    InsertAt(&A, StringtoWord("bikin kenyang"),2);
+    InsertAt(&A, StringtoKata("berasa ingin makan (karena perut kosong)"),0);
+    InsertAt(&A, StringtoKata("sudah puas makan"),1);
+    InsertAt(&A, StringtoKata("bikin kenyang"),2);
     return A;
 }
 
 void hangman(){
     srand(time(0));
-    ArrayDin wordlist = initWordlist();
+    ArrayDin Katalist = initKatalist();
     ArrayDin descList = initDescList();
 
     int i;
-    int random = rand() % wordlist.Neff;
+    int random = rand() % Katalist.Neff;
     // printf("%d\n", random);
-    Word word = wordlist.A[random];
-    Word desc = descList.A[random];
-    int wordLength = word.Length;
+    Kata kata = Katalist.A[random];
+    Kata desc = descList.A[random];
+    int KataLength = kata.Length;
     int wrongGuess = 0;
     int correctGuess = 0;
     char guess;
-    char wordGuess[50];
-    for(i=0; i<wordLength; i++){
-        wordGuess[i] = '_';
+    char KataGuess[50];
+    for(i=0; i<KataLength; i++){
+        KataGuess[i] = '_';
     }
-    wordGuess[wordLength] = '\0';
+    KataGuess[KataLength] = '\0';
     printf("Selamat datang di game Hangman!\n");
     printf("Game ini akan mengacak sebuah kata dan memberikan deskripsi dari kata tersebut.\n");
     printf("Kamu harus menebak kata tersebut dengan menebak satu huruf per satu huruf.\n");
@@ -59,21 +59,21 @@ void hangman(){
     printf("Jika berhasil menebak, kamu akan menang.\n");
     printf("Selamat bermain!\n");
     printf("Deskripsi: %s\n", desc.Tab);
-    printf("Kata: %s\n", wordGuess);
-    while(wrongGuess < 6 && correctGuess < wordLength){
+    printf("Kata: %s\n", KataGuess);
+    while(wrongGuess < 6 && correctGuess < KataLength){
         printf("Masukkan huruf: ");
         scanf(" %c", &guess);
         boolean found = false;
-        for(i=0; i<wordLength; i++){
-            if(toLower(word.Tab[i]) == guess){
-                wordGuess[i] = word.Tab[i];
+        for(i=0; i<KataLength; i++){
+            if(toLower(kata.Tab[i]) == guess){
+                KataGuess[i] = kata.Tab[i];
                 correctGuess++;
                 found = true;
             }
         }
-        if(correctGuess == wordLength){
+        if(correctGuess == KataLength){
             printf("Selamat, kamu berhasil menebak kata tersebut!\n");
-            printf("Kata: %s\n", wordGuess);
+            printf("Kata: %s\n", KataGuess);
             break;
         }
         if(!found){
@@ -81,11 +81,11 @@ void hangman(){
             printf("Kamu salah menebak!\n");
             printf("Kesempatan salah menebak: %d\n", 6-wrongGuess);
         }
-        printf("Kata: %s\n", wordGuess);
+        printf("Kata: %s\n", KataGuess);
     }
     if(wrongGuess == 6){
         printf("Kamu kalah!\n");
-        printf("Kata yang harus ditebak: %s\n", word.Tab);
+        printf("Kata yang harus ditebak: %s\n", kata.Tab);
     }
 
 }

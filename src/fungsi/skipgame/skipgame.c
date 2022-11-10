@@ -4,15 +4,19 @@
 void menuSkipGame(Queue *Q, int skip){
     displayQueueGame(*Q);
     if (skip > length(*Q)){
-        printf("Tidak ada permainan lagi dalam daftar game-mu.");
+        Kata x;
+        while(!isEmpty(*Q)){
+            dequeue(Q, &x);
+        }
+        printf("Tidak ada permainan lagi dalam daftar game-mu.\n");
     }
     else{
-        Word x;
+        Kata x;
         for (int i = 0; i < skip; i++){
             dequeue(Q, &x);
         }
     }
-    Word Head;
+    Kata Head;
     dequeue(Q, &Head);
     /* nunggu list game buat nge run permainan yang di head */
     Play(Head); // PLACEHOLDER

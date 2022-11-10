@@ -23,7 +23,7 @@ void START(ArrayDin *TabGame, boolean *start)
             }
             else if (i == 1)
             {
-                char p[25] = "LUNCH SLOW";
+                char p[25] = "DINER DASH";
                 CopyStringtoKata(&k, p);
             }
             else if (i == 2)

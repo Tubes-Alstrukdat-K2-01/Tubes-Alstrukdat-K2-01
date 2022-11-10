@@ -8,6 +8,7 @@
         "arraydin.h": "c",
         "mesinkata.h": "c",
         "listgame.h": "c",
-        "queuediner.h": "c"
+        "queuediner.h": "c",
+        "word.h": "c"
     }
 }
