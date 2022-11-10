@@ -1,6 +1,7 @@
 #include "queuegame.h"
 #include "../../ADT/array/arraydin.h"
 #include "../listgame/listgame.h"
+#include "../../ADT/mesinkata/mesinkata.h"
 #include <stdio.h>
 void displayQueueGame(Queue q){
     if (isEmpty(q)){
@@ -21,7 +22,13 @@ void menuQueueGame(Queue *q, ArrayDin arrayGames){
 
     int pil;
     printf("Nomor Game yang mau ditambahkan ke antrian: ");
-    scanf("%d", &pil);
+    int i;
+    for(i=0; i<currentWord.Length; i++){
+        if(currentWord.TabWord[i] >= '0' && currentWord.TabWord[i] <= '9'){
+            pil *= 10;
+            pil += (int)(currentWord.TabWord[i]-48);
+        }
+    }
     Kata namaGame = Get(arrayGames, pil - 1);
     /* minta buat fungsi getnama game dari index */
     enqueue(q, namaGame);
