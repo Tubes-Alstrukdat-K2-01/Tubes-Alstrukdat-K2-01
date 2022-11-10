@@ -4,6 +4,7 @@
 #include "../../ADT/array/arraydin.h"
 #include <stdio.h>
 #include "../queuegame/queuegame.h"
+#include "../../ADT/hangman/hangman.h"
 void menuPlayGame(Queue *Q){
     displayQueueGame(*Q);
     if (!isEmpty(*Q)){
@@ -20,20 +21,23 @@ void Play(Word W){
     } else if (IsWordEqual(W, StringtoWord("DINNERDASH"))){
         printf("Loading game Dinner Dash...");
         dinerdash();
+    } else if (IsWordEqual(W, StringtoWord("HANGMAN"))){
+        printf("Loading game HANGMAN...");
+        hangman();
     } else {
 
     }
 }
-int main(){
-    Queue Q;
-    CreateQueue(&Q);
-    enqueue(&Q, StringtoWord("RNG"));
-    enqueue(&Q, StringtoWord("DINNERDASH"));
-    ArrayDin A = MakeArrayDin();
-    InsertAt(&A, StringtoWord("RNG"),0);
-    InsertAt(&A, StringtoWord("DiNNERDASH"),0);
+// int main(){
+//     Queue Q;
+//     CreateQueue(&Q);
+//     enqueue(&Q, StringtoWord("RNG"));
+//     enqueue(&Q, StringtoWord("DINNERDASH"));
+//     ArrayDin A = MakeArrayDin();
+//     InsertAt(&A, StringtoWord("RNG"),0);
+//     InsertAt(&A, StringtoWord("DiNNERDASH"),0);
 
-    menuPlayGame(&Q);
+//     menuPlayGame(&Q);
 
-    return 0;
-}
+//     return 0;
+// }
