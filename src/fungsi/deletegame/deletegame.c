@@ -1,12 +1,32 @@
 #include "deletegame.h"
+#include <stdio.h>
 
 void DELETEGAME (ArrayDin *arrayGames){
     int del, i;
-    
+
     LISTGAME(*arrayGames);
     printf("Masukkan nomor game yang akan dihapus: ");
-    scanf("%d", &del);
-    
+    boolean valid = false;
+    while(!valid){
+        STARTWORD();
+        del = 0;
+        if(!isEndWord()){
+            boolean integer = true;
+            for(i=0; i<currentWord.Length; i++){
+                if(currentWord.TabWord[i] >= '0' && currentWord.TabWord[i] <= '9'){
+                    del *= 10;
+                    del += (int)(currentWord.TabWord[i]-48);
+                }
+                else{
+                    integer = false;   
+                }
+            }
+            ADVWORD();
+            if(isEndWord() && integer){
+                valid = true;
+            }
+        }
+    }
     if ((del>=1) && (del<=5)){
         printf("Game gagal dihapus \n");
     }
@@ -16,5 +36,5 @@ void DELETEGAME (ArrayDin *arrayGames){
         DeleteAt(arrayGames, i);
         printf("Game berhasil dihapus \n");
     }
-        
+
 }

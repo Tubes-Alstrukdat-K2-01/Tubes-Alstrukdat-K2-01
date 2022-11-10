@@ -1,7 +1,7 @@
 // Header
-#include "queue.h"
+#include "queuediner.h"
 #include <stdio.h>
-// /* Definisi ADT Queue dengan representasi array secara eksplisit dan alokasi statik */
+// /* Definisi ADT QueueDiner dengan representasi array secara eksplisit dan alokasi statik */
 
 // #ifndef QUEUE_H
 // #define QUEUE_H
@@ -17,18 +17,18 @@
 // 	ElType buffer[CAPACITY]; 
 // 	int idxHead;
 // 	int idxTail;
-// } Queue;
+// } QueueDiner;
 
 
 // /* ********* AKSES (Selektor) ********* */
-// /* Jika q adalah Queue, maka akses elemen : */
+// /* Jika q adalah QueueDiner, maka akses elemen : */
 // #define IDX_HEAD(q) (q).idxHead
 // #define IDX_TAIL(q) (q).idxTail
 // #define     HEAD(q) (q).buffer[(q).idxHead]
 // #define     TAIL(q) (q).buffer[(q).idxTail]
 
 /* *** Kreator *** */
-void CreateQueue(Queue *q){
+void CreateQueue(QueueDiner *q){
     IDX_HEAD(*q) = IDX_UNDEF;
     IDX_TAIL(*q) = IDX_UNDEF;
 }
@@ -39,17 +39,17 @@ void CreateQueue(Queue *q){
 /* Proses : Melakukan alokasi, membuat sebuah q kosong */
 
 /* ********* Prototype ********* */
-boolean isEmpty(Queue q){
+boolean isEmpty(QueueDiner q){
     return ((IDX_HEAD(q) == IDX_UNDEF) && (IDX_TAIL(q) == IDX_UNDEF));
 }
 /* Mengirim true jika q kosong: lihat definisi di atas */
-boolean isFull(Queue q){
+boolean isFull(QueueDiner q){
     return ((CAPACITY+IDX_TAIL(q)-IDX_HEAD(q))%CAPACITY == CAPACITY-1);
 }
 /* Mengirim true jika tabel penampung elemen q sudah penuh */
 /* yaitu IDX_TAIL akan selalu di belakang IDX_HEAD dalam buffer melingkar*/
 
-int length(Queue q){
+int length(QueueDiner q){
     if (isEmpty(q)){
         return 0;
     }
@@ -60,7 +60,7 @@ int length(Queue q){
 /* Mengirimkan banyaknya elemen queue. Mengirimkan 0 jika q kosong. */
 
 /* *** Primitif Add/Delete *** */
-void enqueue(Queue *q, int makanan, int durasi, int ketahanan, int harga){
+void enqueue(QueueDiner *q, int makanan, int durasi, int ketahanan, int harga){
     if (isEmpty(*q)){
         IDX_HEAD(*q) = 0;
         IDX_TAIL(*q) = 0;
@@ -77,7 +77,7 @@ void enqueue(Queue *q, int makanan, int durasi, int ketahanan, int harga){
 /* I.S. q mungkin kosong, tabel penampung elemen q TIDAK penuh */
 /* F.S. val menjadi TAIL yang baru, IDX_TAIL "mundur" dalam buffer melingkar. */
 
-void dequeue(Queue *q, int *makanan, int *durasi, int *ketahanan, int *harga){
+void dequeue(QueueDiner *q, int *makanan, int *durasi, int *ketahanan, int *harga){
     *makanan = HEAD_makanan(*q);
     *durasi = HEAD_durasi(*q);
     *ketahanan = HEAD_ketahanan(*q);
@@ -95,7 +95,7 @@ void dequeue(Queue *q, int *makanan, int *durasi, int *ketahanan, int *harga){
 /* F.S. val = nilai elemen HEAD pd I.S., IDX_HEAD "mundur";
         q mungkin kosong */
 
-boolean isMember(Queue q, int makanan){
+boolean isMember(QueueDiner q, int makanan){
     if(isEmpty(q)){
         return false;
     }
@@ -141,7 +141,7 @@ boolean isMember(Queue q, int makanan){
    F.S : True jika makanan ada di dalam queue
 */
 
-void dequeueMember(Queue *q, int *makanan, int *durasi, int *ketahanan, int *harga){
+void dequeueMember(QueueDiner *q, int *makanan, int *durasi, int *ketahanan, int *harga){
     if(isMember(*q,*makanan)){
         int idx;
         boolean found = false;

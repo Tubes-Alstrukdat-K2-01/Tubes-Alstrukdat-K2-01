@@ -23,7 +23,7 @@ void LOAD(ArrayDin *TabGame, boolean *start, char *filename){
             }
             for(i=0; i<n; i++){
                 fgets(data,255,pita);
-                Word w;
+                Kata w;
                 MakeWord(&w);
                 CopyStringtoWord(&w, data);
                 InsertAt(TabGame,w,i);

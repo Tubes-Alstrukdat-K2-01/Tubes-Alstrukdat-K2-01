@@ -5,6 +5,9 @@
         "mesinkarakter.h": "c",
         "stdio.h": "c",
         "queue.h": "c",
-        "arraydin.h": "c"
+        "arraydin.h": "c",
+        "mesinkata.h": "c",
+        "listgame.h": "c",
+        "queuediner.h": "c"
     }
 }
