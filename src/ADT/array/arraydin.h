@@ -1,22 +1,10 @@
 #ifndef __ARRAY_DINAMIK__
 #define __ARRAY_DINAMIK__
 
-
-
-
-// Boolean
 #include "../boolean.h"
 #include "../word/word.h"
 
 #define InitialSize 10
-<<<<<<< HEAD
-typedef struct {
-    char Tab[50];
-    int Length;
-} Kata;
-=======
-
->>>>>>> 3b0b826a7bb1b341a18d2c883f01faa6f72f2829
 typedef int IdxType;
 typedef struct {
     Kata *A;
@@ -75,29 +63,8 @@ void InsertAt(ArrayDin *array, Kata el, IdxType i);
 void DeleteAt(ArrayDin *array, IdxType i);
 
 /*
-  Fungsi untuk menyalin semua yang ada di Win ke Wout
-*/
-<<<<<<< HEAD
-void CopyKata(Kata *Win, Kata *Wout);
-
-/*
-  Fungsi untuk membuat MakeKata dengan Kata kosong
-  Kata Kosong ditandai dengan Kata.Length = 0;
-*/
-void MakeKata(Kata *W);
-
-/*
-  I.S : W kosong dan s berisi
-  Fungsi untuk mengkopi semua yang ada di string ke Kata
-*/
-void CopyStringtoKata(Kata *W, char *s);
-
-
-/*
   Fungsi untuk menambahkan anggota TabGame dengan game sebagai element terakhir
 */
 void InsertLast(ArrayDin *TabGame, Kata game);
-=======
->>>>>>> 3b0b826a7bb1b341a18d2c883f01faa6f72f2829
 
 #endif

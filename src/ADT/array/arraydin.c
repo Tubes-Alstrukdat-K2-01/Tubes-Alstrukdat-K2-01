@@ -92,34 +92,8 @@ void DeleteAt(ArrayDin *array, IdxType i){
         j++;
     }
     array->Neff--;
-<<<<<<< HEAD
-}
-
-void CopyKata(Kata *Win, Kata *Wout){
-    (*Wout).Length = (*Win).Length;
-    int i;
-    for(i=0; (*Win).Length; i++){
-        (*Wout).Tab[i] = (*Win).Tab[i];
-    }
-}
-
-void MakeKata(Kata *W){
-    (*W).Length = 0;
-}
-
-void CopyStringtoKata(Kata *W, char *s){
-    MakeKata(W);
-    int i=0;
-    while(s[i] != '\0' && s[i] != '\n'){
-        (*W).Tab[i] = s[i];
-        (*W).Length++; 
-        i++;
-    }
-    (*W).Tab[i] = '\0';
 }
 
 void InsertLast(ArrayDin *TabGame, Kata game){
     InsertAt(TabGame,game,(*TabGame).Neff);
-=======
->>>>>>> 3b0b826a7bb1b341a18d2c883f01faa6f72f2829
 }
