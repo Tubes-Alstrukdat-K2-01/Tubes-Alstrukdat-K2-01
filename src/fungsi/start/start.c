@@ -1,38 +1,47 @@
 #include "start.h"
 #include <stdio.h>
 
-void START(ArrayDin *TabGame, boolean *start){
-    if(*start){
+void START(ArrayDin *TabGame, boolean *start)
+{
+    if (*start)
+    {
         printf("Proses Start tidak berhasil dilakukan karena BNMO telah dijalankan!\n");
     }
-    else{
+    else
+    {
         *start = true;
         *TabGame = MakeArrayDin();
         int i;
-        for(i=0; i<5; i++){
+        for (i = 0; i < 5; i++)
+        {
             Kata k;
             MakeKata(&k);
-            if(i==0){
-                char p[20] = "RNG";
-                CopyStringtoKata(&k,p);
+            if (i == 0)
+            {
+                char p[30] = "RNG";
+                CopyStringtoKata(&k, p);
             }
-            else if(i==1){
-                char p[20] = "LUNCH SLOW";
-                CopyStringtoKata(&k,p);
+            else if (i == 1)
+            {
+                char p[30] = "LUNCH SLOW";
+                CopyStringtoKata(&k, p);
             }
-            else if(i==2){
-                char p[20] = "DINOSAUR IN EARTH";
-                CopyStringtoKata(&k,p);
+            else if (i == 2)
+            {
+                char p[30] = "DINOSAUR IN EARTH";
+                CopyStringtoKata(&k, p);
             }
-            else if(i==3){
-                char p[20] = "RISEWOMAN";
-                CopyStringtoKata(&k,p);
+            else if (i == 3)
+            {
+                char p[30] = "RISEWOMAN";
+                CopyStringtoKata(&k, p);
             }
-            else{
-                char p[20] = "EIFFEL TOWER";
-                CopyStringtoKata(&k,p);
+            else
+            {
+                char p[30] = "EIFFEL TOWER";
+                CopyStringtoKata(&k, p);
             }
-            InsertLast(TabGame,k);
+            InsertLast(TabGame, k);
         }
     }
 }
