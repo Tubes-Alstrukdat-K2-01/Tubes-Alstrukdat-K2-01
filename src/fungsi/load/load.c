@@ -5,12 +5,15 @@ void LOAD(ArrayDin *TabGame, boolean *start, char *filename){
         printf("Proses LOAD gagal karena BNMO telah dijalankan");
     }
     else{
+        *start = true;
         MakeArrayDin(TabGame);
         FILE *pita;
+        char *file = concat("../../../data/",filename);
         if((pita = fopen(filename,"r")) == NULL){
-            printf("File Konfigurasi tidak ditemukan ");
+            printf("File Konfigurasi tidak ditemukan\n");
         }
         else{
+            printf("Save file berhasil dibaca. BNMO berhasil dijalankan.\n");
             char data[255];
             fgets(data,255,pita);
             int n = 0, i = 0;
