@@ -1,0 +1,3 @@
+/*
+    file ini adalah drive main program dari program BNMO
+*/

@@ -4,16 +4,16 @@
 #include <time.h>
 #include <stdlib.h>
 
-boolean gameover(Queue q, int pelayanan){
+boolean gameover(QueueDiner q, int pelayanan){
     return ((length(q) > 7) || pelayanan == 15);
 }
 /*
     I.S : q dan pelanggaran sembarang
-    F.S : True jika panjang antrian queue lebih dari 7 atau pelayanan mencapai 15
+    F.S : True jika panjang antrian queueDiner lebih dari 7 atau pelayanan mencapai 15
           False jika belum termasuk katergori di atas
 */
 
-void displayPesanan(Queue q){
+void displayPesanan(QueueDiner q){
     printf("Daftar Pesanan\n");
     printf("Memasak | Durasi memasak | Ketahanan | Harga\n");
     printf("--------------------------------------------\n");
@@ -39,7 +39,7 @@ void displayPesanan(Queue q){
     F.S : Menampilkan Pesanan yang terdiri dari Makanan, Durasi, Ketahanan, dan Harga
 */
 
-void displayMemasak(Queue q){
+void displayMemasak(QueueDiner q){
     printf("Daftar Makanan yang sedang dimasak\n");
     printf("Memasak | Sisa durasi memasak \n");
     printf("------------------------------\n");
@@ -69,7 +69,7 @@ void displayMemasak(Queue q){
     F.S : Menampilkan Daftar Pesanan yang sedang dimasak yang terdiri dari Makanan dan Durasi
 */
 
-void displayDisajikan(Queue q){
+void displayDisajikan(QueueDiner q){
     printf("Daftar Makanan yang sedang dimasak\n");
     printf("Memasak | Sisa ketahanan memasak \n");
     printf("------------------------------\n");
@@ -98,7 +98,7 @@ void displayDisajikan(Queue q){
     I.S : q sembarang
     F.S : Menampilkan Daftar Masakan yang sudah bisa disajikan yang sedang dimasak yang terdiri dari Makanan dan Ketahanan
 */
-void cook(Queue qpesan, Queue *qmasak, int makanan){
+void cook(QueueDiner qpesan, QueueDiner *qmasak, int makanan){
     if(isMember(qpesan,makanan)){
         if(isMember(*qmasak,makanan)){
             printf("Makanan sedang atau sudah dimasak!\n");
@@ -108,8 +108,8 @@ void cook(Queue qpesan, Queue *qmasak, int makanan){
                 printf("Berhasil memasak M%d\n",makanan);
                 turn(qmasak);
                 int durasi,ketahaan,harga;
-                dequeueMember(&qpesan, &makanan, &durasi, &ketahaan, &harga);
-                enqueue(qmasak,makanan,durasi,ketahaan,harga);
+                dequeueDinerMember(&qpesan, &makanan, &durasi, &ketahaan, &harga);
+                enqueueDiner(qmasak,makanan,durasi,ketahaan,harga);
             }
             else{
                 printf("Kapasitas memasak telah mencapai batas!\n");
@@ -125,7 +125,7 @@ void cook(Queue qpesan, Queue *qmasak, int makanan){
     F.S : Memasukkan makanan kedalam qmasak selama masih availablecook
 */
 
-void serve(Queue *qpesan, Queue *qmasak, int makanan, int *pelayanan, int *saldo, int *m){
+void serve(QueueDiner *qpesan, QueueDiner *qmasak, int makanan, int *pelayanan, int *saldo, int *m){
     if(isMember(*qmasak,makanan)){
         int idx;
         boolean found = false;
@@ -166,15 +166,15 @@ void serve(Queue *qpesan, Queue *qmasak, int makanan, int *pelayanan, int *saldo
             if(HEAD_makanan(*qpesan) == makanan){
                 printf("M%d berhasil diantar\n",makanan);
                 int durasi, ketahanan, harga;
-                dequeue(qpesan,&makanan,&durasi,&ketahanan,&harga);
+                dequeueDiner(qpesan,&makanan,&durasi,&ketahanan,&harga);
                 *saldo += harga;
-                dequeueMember(qmasak,&makanan,&durasi,&ketahanan,&harga);
+                dequeueDinerMember(qmasak,&makanan,&durasi,&ketahanan,&harga);
                 *pelayanan++;
                 turn(qmasak);
                 durasi = rand()%5 + 1;
                 ketahanan = rand()%5 + 1;
                 harga = (rand()%41 + 10)*1000;
-                enqueue(qpesan,*m,durasi,ketahanan,harga);
+                enqueueDiner(qpesan,*m,durasi,ketahanan,harga);
                 *m += 1;
             }
             else{
@@ -192,7 +192,7 @@ void serve(Queue *qpesan, Queue *qmasak, int makanan, int *pelayanan, int *saldo
           Jika tidak maka output "makanan" belum dapat disajikan karena "head qpesan" belum selesai
 */
 
-void turn(Queue *q){
+void turn(QueueDiner *q){
     int i;
     if (IDX_TAIL(*q) >= IDX_HEAD(*q)){
         for(i=IDX_HEAD(*q) ; i <= IDX_TAIL(*q) ; i++){
@@ -202,7 +202,7 @@ void turn(Queue *q){
                     printf("Makanan M%d telah basi!\n",(*q).buffer[i].makanan);
                     int makanan = (*q).buffer[i].makanan;
                     int durasi, ketahanan, harga;
-                    dequeueMember(q,&makanan,&durasi,&ketahanan,&harga);
+                    dequeueDinerMember(q,&makanan,&durasi,&ketahanan,&harga);
                 }
             }
             else{
@@ -221,7 +221,7 @@ void turn(Queue *q){
                     printf("Makanan M%d telah basi!\n", (*q).buffer[i%CAPACITY].makanan);
                     int makanan = (*q).buffer[i%CAPACITY].makanan;
                     int durasi, ketahanan, harga;
-                    dequeueMember(q,&makanan,&durasi,&ketahanan,&harga);
+                    dequeueDinerMember(q,&makanan,&durasi,&ketahanan,&harga);
                 }
             }
             else{
@@ -238,7 +238,7 @@ void turn(Queue *q){
     F.S : Melakukan decrement pada durasi yang tidak 0 dan melakukan decrement pada ketahanan jika durasi == 0
 */
 
-boolean availablecook(Queue q){
+boolean availablecook(QueueDiner q){
     int i;
     int count = 0;
     if (IDX_TAIL(q) >= IDX_HEAD(q)){
@@ -263,15 +263,15 @@ boolean availablecook(Queue q){
 */
 
 void dinerdash(){
-    Queue qpesan, qmasak;
-    CreateQueue(&qpesan); CreateQueue(&qmasak);
+    QueueDiner qpesan, qmasak;
+    CreateQueueDiner(&qpesan); CreateQueueDiner(&qmasak);
     int makanan=0, durasi, ketahanan, harga;
     srand(time(0));
     for(makanan; makanan < 3; makanan++){
         durasi = rand()%5 + 1;
         ketahanan = rand()%5 + 1;
         harga = (rand()%41 + 10)*1000;
-        enqueue(&qpesan, makanan, durasi, ketahanan, harga);
+        enqueueDiner(&qpesan, makanan, durasi, ketahanan, harga);
     }
     int pelayanan = 0, saldo = 0;
     printf("Selamat Datang di Diner Dash!\n\n");
@@ -315,7 +315,7 @@ void dinerdash(){
                     durasi = rand()%5 + 1;
                     ketahanan = rand()%5 + 1;
                     harga = (rand()%41 + 10)*1000;
-                    enqueue(&qpesan, makanan, durasi, ketahanan, harga);
+                    enqueueDiner(&qpesan, makanan, durasi, ketahanan, harga);
                     makanan++;
                 }
                 if(!isMember(qpesan,m)){
@@ -328,7 +328,7 @@ void dinerdash(){
                 durasi = rand()%5 + 1;
                 ketahanan = rand()%5 + 1;
                 harga = (rand()%41 + 10)*1000;
-                enqueue(&qpesan, makanan, durasi, ketahanan, harga);
+                enqueueDiner(&qpesan, makanan, durasi, ketahanan, harga);
                 makanan++;
             }
             else{

@@ -10,12 +10,12 @@ void RNG() {
     boolean main = true,menang = false;
     int tebakan;
     srand(time(0));
-    giliran = 100;
+    giliran = 20;
     skor = 0;
     max = 0;
     count = 1;
     int digitmax = 0;
-    for (int i = 0;i < 6;i++) {
+    for (int i = 0;i < 8;i++) {
         max = max + rand()%((int)pow(2,i));
     }
 
@@ -83,7 +83,7 @@ void RNG() {
     }
     printf("\n");
     if ( menang ) {
-        skor = 101-count;
+        skor = (21-count)*5;
         printf("HEBAT,KAMU BERHASIL MENEBAK\n");
         printf("SKOR YANG KAMU DAPAT ADALAH %d\n",skor);
     } else {

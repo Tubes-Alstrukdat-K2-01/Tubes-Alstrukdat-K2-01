@@ -1,6 +1,9 @@
 #ifndef __PLAYGAME_H
 #define __PLAYGAME_H
+
 #include "../../ADT/array/arraydin.h"
+#include "../../ADT/mesinkata/mesinkata.h"
+#include "../listgame/listgame.h"
 
 void DELETEGAME(ArrayDin *arrayGames);
 

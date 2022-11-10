@@ -10,10 +10,10 @@
 typedef struct {
     char Tab[50];
     int Length;
-} Word;
+} Kata;
 typedef int IdxType;
 typedef struct {
-    Word *A;
+    Kata *A;
     int Capacity;
     int Neff;
 } ArrayDin;
@@ -48,7 +48,7 @@ int Length(ArrayDin array);
  * Mengembalikan elemen array L yang ke-I (indeks lojik).
  * Prekondisi: array tidak kosong, i di antara 0..Length(array).
  */
-Word Get(ArrayDin array, IdxType i);
+Kata Get(ArrayDin array, IdxType i);
 
 /**
  * Fungsi untuk mendapatkan kapasitas yang tersedia.
@@ -60,7 +60,7 @@ int GetCapacity(ArrayDin array);
  * Fungsi untuk menambahkan elemen baru di index ke-i
  * Prekondisi: array terdefinisi, i di antara 0..Length(array).
  */
-void InsertAt(ArrayDin *array, Word el, IdxType i);
+void InsertAt(ArrayDin *array, Kata el, IdxType i);
 
 /**
  * Fungsi untuk menghapus elemen di index ke-i ArrayDin
@@ -71,18 +71,24 @@ void DeleteAt(ArrayDin *array, IdxType i);
 /*
   Fungsi untuk menyalin semua yang ada di Win ke Wout
 */
-void CopyWord(Word *Win, Word *Wout);
+void CopyKata(Kata *Win, Kata *Wout);
 
 /*
-  Fungsi untuk membuat MakeWord dengan Word kosong
-  Word Kosong ditandai dengan Word.Length = 0;
+  Fungsi untuk membuat MakeKata dengan Kata kosong
+  Kata Kosong ditandai dengan Kata.Length = 0;
 */
-void MakeWord(Word *W);
+void MakeKata(Kata *W);
 
 /*
   I.S : W kosong dan s berisi
-  Fungsi untuk mengkopi semua yang ada di string ke word
+  Fungsi untuk mengkopi semua yang ada di string ke Kata
 */
-void CopyStringtoWord(Word *W, char *s);
+void CopyStringtoKata(Kata *W, char *s);
+
+
+/*
+  Fungsi untuk menambahkan anggota TabGame dengan game sebagai element terakhir
+*/
+void InsertLast(ArrayDin *TabGame, Kata game);
 
 #endif
