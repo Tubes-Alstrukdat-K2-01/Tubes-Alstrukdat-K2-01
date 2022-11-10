@@ -1,5 +1,7 @@
 #include "queuegame.h"
-
+#include "../../ADT/array/arraydin.h"
+#include "../listgame/listgame.h"
+#include <stdio.h>
 void displayQueueGame(Queue q){
     if (isEmpty(q)){
         printf("Queue Kosong");
@@ -11,16 +13,16 @@ void displayQueueGame(Queue q){
         }
     }
 }
-void menuQueueGame(Queue *q){
+void menuQueueGame(Queue *q, ArrayDin arrayGames){
     displayQueueGame(*q);
 
-    displayPilGame(List lg);
+    LISTGAME(arrayGames);
     /* asumsi listgame pake adt List, sesuaian */
 
     int pil;
     printf("Nomor Game yang mau ditambahkan ke antrian: ");
     scanf("%d", &pil);
-    Word namaGame = getNamaGame(List lg, pil - 1); //PLACEHOLDER
+    Word namaGame = Get(arrayGames, pil - 1);
     /* minta buat fungsi getnama game dari index */
     enqueue(q, namaGame);
 }

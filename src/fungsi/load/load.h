@@ -2,6 +2,7 @@
 #define __LOAD__
 
 #include "../../ADT/array/arraydin.h"
+#include "../../ADT/word/word.h"
 #include <stdio.h>
 #include <stdlib.h>
 

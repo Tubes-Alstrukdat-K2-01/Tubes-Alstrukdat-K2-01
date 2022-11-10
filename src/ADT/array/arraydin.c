@@ -93,25 +93,3 @@ void DeleteAt(ArrayDin *array, IdxType i){
     }
     array->Neff--;
 }
-
-void CopyWord(Word *Win, Word *Wout){
-    (*Wout).Length = (*Win).Length;
-    int i;
-    for(i=0; (*Win).Length; i++){
-        (*Wout).Tab[i] = (*Win).Tab[i];
-    }
-}
-
-void MakeWord(Word *W){
-    (*W).Length = 0;
-}
-
-void CopyStringtoWord(Word *W, char *s){
-    MakeWord(W);
-    int i=0;
-    while(s[i] != '\0'){
-        (*W).Tab[i] = s[i];
-        (*W).Length++; 
-        i++;
-    }
-}

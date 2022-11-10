@@ -1,16 +1,15 @@
 #ifndef __ARRAY_DINAMIK__
 #define __ARRAY_DINAMIK__
 
+
+
+
 // Boolean
-#define boolean unsigned char
-#define true 1
-#define false 0
+#include "../boolean.h"
+#include "../word/word.h"
 
 #define InitialSize 10
-typedef struct {
-    char Tab[50];
-    int Length;
-} Word;
+
 typedef int IdxType;
 typedef struct {
     Word *A;
@@ -71,18 +70,5 @@ void DeleteAt(ArrayDin *array, IdxType i);
 /*
   Fungsi untuk menyalin semua yang ada di Win ke Wout
 */
-void CopyWord(Word *Win, Word *Wout);
-
-/*
-  Fungsi untuk membuat MakeWord dengan Word kosong
-  Word Kosong ditandai dengan Word.Length = 0;
-*/
-void MakeWord(Word *W);
-
-/*
-  I.S : W kosong dan s berisi
-  Fungsi untuk mengkopi semua yang ada di string ke word
-*/
-void CopyStringtoWord(Word *W, char *s);
 
 #endif
