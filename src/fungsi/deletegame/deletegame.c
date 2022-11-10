@@ -25,6 +25,14 @@ void DELETEGAME (ArrayDin *arrayGames){
             if(isEndWord() && integer){
                 valid = true;
             }
+            else{
+                while(!isEndWord()){
+                    ADVWORD();
+                }
+            }
+        }
+        if(!valid){
+            printf("Masukkan Invalid! Silahkan Masukkan Nomor Game Kembali : ");
         }
     }
     if ((del>=1) && (del<=5)){

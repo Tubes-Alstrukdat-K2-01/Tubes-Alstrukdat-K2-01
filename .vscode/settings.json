@@ -9,6 +9,12 @@
         "mesinkata.h": "c",
         "listgame.h": "c",
         "queuediner.h": "c",
-        "word.h": "c"
-    }
+        "word.h": "c",
+        "skipgame.h": "c",
+        "start.h": "c",
+        "time.h": "c",
+        "save.h": "c",
+        "hangman.h": "c"
+    },
+    "C_Cpp.errorSquiggles": "Disabled"
 }

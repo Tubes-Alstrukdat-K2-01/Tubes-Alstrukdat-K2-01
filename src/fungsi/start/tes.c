@@ -2,12 +2,15 @@
 #include "../listgame/listgame.h"
 #include <stdio.h>
 #include "../creategame/creategame.h"
+#include "../deletegame/deletegame.h"
 
 int main(){
     ArrayDin TabGame;
     boolean start = false;
-    START(&TabGame,&start);
+    STARTPROGRAM(&TabGame,&start);
     CREATEGAME(&TabGame);
+    CREATEGAME(&TabGame);
+    DELETEGAME(&TabGame);
     LISTGAME(TabGame);
     return 0;
 }

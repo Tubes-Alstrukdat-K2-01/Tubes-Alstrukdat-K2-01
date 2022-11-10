@@ -1,4 +1,6 @@
 #include "word.h"
+#include <stdlib.h>
+
 void CopyKata(Kata *Win, Kata *Wout){
     (*Wout).Length = (*Win).Length;
     int i;
@@ -19,10 +21,25 @@ void CopyStringtoKata(Kata *W, char *s){
         (*W).Length++; 
         i++;
     }
+    (*W).Tab[i] = '\0';
     for(i; i<50; i++){
         (*W).Tab[i] = '\0';
     } //jadiin null biar ga  overflow
 }
+
+void CopyWordtoKata(Kata *K, Word W){
+    MakeKata(K);
+    int i;
+    (*K).Length = W.Length;
+    for(i=0; i<W.Length; i++){
+        (*K).Tab[i] = W.TabWord[i];
+    }
+    (*K).Tab[i] = '\0';
+    for(i; i<50; i++){
+        (*K).Tab[i] = '\0';
+    } //jadiin null biar ga  overflow
+}
+
 boolean IsKataEqual(Kata W1, Kata W2){
     if(W1.Length != W2.Length){
         return false;

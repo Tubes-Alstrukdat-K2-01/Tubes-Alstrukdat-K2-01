@@ -1,11 +1,11 @@
 #include "dinerdash.h"
-#include "../mesinkata/mesinkata.h"
+#include "../../ADT/mesinkata/mesinkata.h"
 #include <stdio.h>
 #include <time.h>
 #include <stdlib.h>
 
-boolean gameover(QueueDiner q, int pelayanan){
-    return ((length(q) > 7) || pelayanan == 15);
+boolean gameover(Queuediner q, int pelayanan){
+    return ((lengthDiner(q) > 7) || pelayanan == 15);
 }
 /*
     I.S : q dan pelanggaran sembarang
@@ -13,11 +13,11 @@ boolean gameover(QueueDiner q, int pelayanan){
           False jika belum termasuk katergori di atas
 */
 
-void displayPesanan(QueueDiner q){
+void displayPesanan(Queuediner q){
     printf("Daftar Pesanan\n");
     printf("Memasak | Durasi memasak | Ketahanan | Harga\n");
     printf("--------------------------------------------\n");
-    if(isEmpty(q)){
+    if(isEmptyDiner(q)){
         printf("        |                |           |      \n");
     }
     else{
@@ -39,11 +39,11 @@ void displayPesanan(QueueDiner q){
     F.S : Menampilkan Pesanan yang terdiri dari Makanan, Durasi, Ketahanan, dan Harga
 */
 
-void displayMemasak(QueueDiner q){
+void displayMemasak(Queuediner q){
     printf("Daftar Makanan yang sedang dimasak\n");
     printf("Memasak | Sisa durasi memasak \n");
     printf("------------------------------\n");
-    if(isEmpty(q)){
+    if(isEmptyDiner(q)){
         printf("        |                \n");
     }
     else{
@@ -69,11 +69,11 @@ void displayMemasak(QueueDiner q){
     F.S : Menampilkan Daftar Pesanan yang sedang dimasak yang terdiri dari Makanan dan Durasi
 */
 
-void displayDisajikan(QueueDiner q){
+void displayDisajikan(Queuediner q){
     printf("Daftar Makanan yang sedang dimasak\n");
     printf("Memasak | Sisa ketahanan memasak \n");
     printf("------------------------------\n");
-    if(isEmpty(q)){
+    if(isEmptyDiner(q)){
         printf("        |                \n");
     }
     else{
@@ -98,7 +98,7 @@ void displayDisajikan(QueueDiner q){
     I.S : q sembarang
     F.S : Menampilkan Daftar Masakan yang sudah bisa disajikan yang sedang dimasak yang terdiri dari Makanan dan Ketahanan
 */
-void cook(QueueDiner qpesan, QueueDiner *qmasak, int makanan){
+void cook(Queuediner qpesan, Queuediner *qmasak, int makanan){
     if(isMember(qpesan,makanan)){
         if(isMember(*qmasak,makanan)){
             printf("Makanan sedang atau sudah dimasak!\n");
@@ -108,7 +108,7 @@ void cook(QueueDiner qpesan, QueueDiner *qmasak, int makanan){
                 printf("Berhasil memasak M%d\n",makanan);
                 turn(qmasak);
                 int durasi,ketahaan,harga;
-                dequeueDinerMember(&qpesan, &makanan, &durasi, &ketahaan, &harga);
+                dequeueMember(&qpesan, &makanan, &durasi, &ketahaan, &harga);
                 enqueueDiner(qmasak,makanan,durasi,ketahaan,harga);
             }
             else{
@@ -125,7 +125,7 @@ void cook(QueueDiner qpesan, QueueDiner *qmasak, int makanan){
     F.S : Memasukkan makanan kedalam qmasak selama masih availablecook
 */
 
-void serve(QueueDiner *qpesan, QueueDiner *qmasak, int makanan, int *pelayanan, int *saldo, int *m){
+void serve(Queuediner *qpesan, Queuediner *qmasak, int makanan, int *pelayanan, int *saldo, int *m){
     if(isMember(*qmasak,makanan)){
         int idx;
         boolean found = false;
@@ -168,7 +168,7 @@ void serve(QueueDiner *qpesan, QueueDiner *qmasak, int makanan, int *pelayanan, 
                 int durasi, ketahanan, harga;
                 dequeueDiner(qpesan,&makanan,&durasi,&ketahanan,&harga);
                 *saldo += harga;
-                dequeueDinerMember(qmasak,&makanan,&durasi,&ketahanan,&harga);
+                dequeueMember(qmasak,&makanan,&durasi,&ketahanan,&harga);
                 *pelayanan++;
                 turn(qmasak);
                 durasi = rand()%5 + 1;
@@ -192,7 +192,7 @@ void serve(QueueDiner *qpesan, QueueDiner *qmasak, int makanan, int *pelayanan, 
           Jika tidak maka output "makanan" belum dapat disajikan karena "head qpesan" belum selesai
 */
 
-void turn(QueueDiner *q){
+void turn(Queuediner *q){
     int i;
     if (IDX_TAIL(*q) >= IDX_HEAD(*q)){
         for(i=IDX_HEAD(*q) ; i <= IDX_TAIL(*q) ; i++){
@@ -202,7 +202,7 @@ void turn(QueueDiner *q){
                     printf("Makanan M%d telah basi!\n",(*q).buffer[i].makanan);
                     int makanan = (*q).buffer[i].makanan;
                     int durasi, ketahanan, harga;
-                    dequeueDinerMember(q,&makanan,&durasi,&ketahanan,&harga);
+                    dequeueMember(q,&makanan,&durasi,&ketahanan,&harga);
                 }
             }
             else{
@@ -221,7 +221,7 @@ void turn(QueueDiner *q){
                     printf("Makanan M%d telah basi!\n", (*q).buffer[i%CAPACITY].makanan);
                     int makanan = (*q).buffer[i%CAPACITY].makanan;
                     int durasi, ketahanan, harga;
-                    dequeueDinerMember(q,&makanan,&durasi,&ketahanan,&harga);
+                    dequeueMember(q,&makanan,&durasi,&ketahanan,&harga);
                 }
             }
             else{
@@ -238,7 +238,7 @@ void turn(QueueDiner *q){
     F.S : Melakukan decrement pada durasi yang tidak 0 dan melakukan decrement pada ketahanan jika durasi == 0
 */
 
-boolean availablecook(QueueDiner q){
+boolean availablecook(Queuediner q){
     int i;
     int count = 0;
     if (IDX_TAIL(q) >= IDX_HEAD(q)){
@@ -263,7 +263,7 @@ boolean availablecook(QueueDiner q){
 */
 
 void dinerdash(){
-    QueueDiner qpesan, qmasak;
+    Queuediner qpesan, qmasak;
     CreateQueueDiner(&qpesan); CreateQueueDiner(&qmasak);
     int makanan=0, durasi, ketahanan, harga;
     srand(time(0));

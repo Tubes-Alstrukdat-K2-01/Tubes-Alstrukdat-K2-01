@@ -87,11 +87,11 @@ void InsertAt(ArrayDin *array, Kata el, IdxType i){
 
 void DeleteAt(ArrayDin *array, IdxType i){
     IdxType j = i;
-    while (j<(*array).Neff-1){
-        CopyKata(&(*array).A[j+1] , &(*array).A[j]);
+    while (j < (*array).Neff-1){
+        (*array).A[j] = (*array).A[j+1];
         j++;
     }
-    array->Neff--;
+    (*array).Neff--;
 }
 
 void InsertLast(ArrayDin *TabGame, Kata game){

@@ -1,6 +1,5 @@
 #include "hangman.h"
-#include "../word/word.h"
-#include "../array/arraydin.h"
+#include "../../ADT/word/word.h"
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -88,8 +87,4 @@ void hangman(){
         printf("Kata yang harus ditebak: %s\n", kata.Tab);
     }
 
-}
-int main(){
-    hangman();
-    return 0;
 }

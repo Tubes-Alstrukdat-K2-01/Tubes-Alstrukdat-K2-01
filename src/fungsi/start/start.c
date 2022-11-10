@@ -1,7 +1,7 @@
 #include "start.h"
 #include <stdio.h>
 
-void START(ArrayDin *TabGame, boolean *start)
+void STARTPROGRAM(ArrayDin *TabGame, boolean *start)
 {
     if (*start)
     {
@@ -43,6 +43,7 @@ void START(ArrayDin *TabGame, boolean *start)
             }
             InsertLast(TabGame, k);
         }
+        printf("File konfigurasi sistem berhasil dibaca. BNMO berhasil dijalankan.\n");
     }
 }
 /*

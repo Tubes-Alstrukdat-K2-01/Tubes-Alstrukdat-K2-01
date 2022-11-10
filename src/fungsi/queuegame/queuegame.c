@@ -1,10 +1,8 @@
 #include "queuegame.h"
-#include "../../ADT/array/arraydin.h"
-#include "../listgame/listgame.h"
-#include <stdio.h>
+
 void displayQueueGame(Queue q){
     if (isEmpty(q)){
-        printf("Queue Kosong");
+        printf("Queue Kosong\n");
     }
     else{
         printf("Berikut adalah daftar antriaan game-mu: \n");
@@ -15,14 +13,48 @@ void displayQueueGame(Queue q){
 }
 void menuQueueGame(Queue *q, ArrayDin arrayGames){
     displayQueueGame(*q);
-
+    printf("\n");
     LISTGAME(arrayGames);
     /* asumsi listgame pake adt List, sesuaian */
-
-    int pil;
+    printf("\n");
+    int pil, i;
     printf("Nomor Game yang mau ditambahkan ke antrian: ");
-    scanf("%d", &pil);
-    Kata namaGame = Get(arrayGames, pil - 1);
+    boolean valid = false;
+    while(!valid){
+        STARTWORD();
+        pil = 0;
+        if(!isEndWord()){
+            boolean integer = true;
+            for(i=0; i<currentWord.Length; i++){
+                if(currentWord.TabWord[i] >= '0' && currentWord.TabWord[i] <= '9'){
+                    pil *= 10;
+                    pil += (int)(currentWord.TabWord[i]-48);
+                }
+                else{
+                    integer = false;   
+                }
+            }
+            ADVWORD();
+            if(isEndWord() && integer){
+                valid = true;
+            }
+            else{
+                while(!isEndWord()){
+                    ADVWORD();
+                }
+            }
+        }
+        if(!valid){
+            printf("Masukkan Invalid! Silahkan Masukkan Nomor Game Kembali : ");
+        }
+    }
+    // Kata namaGame = Get(arrayGames, pil - 1);
     /* minta buat fungsi getnama game dari index */
-    enqueue(q, namaGame);
+    if(pil <= arrayGames.Neff && pil > 0){
+        enqueue(q, arrayGames.A[pil-1]);
+        printf("Game berhasil ditambahkan ke dalam daftar antrian.\n");
+    }
+    else{
+        printf("Nomor permainan tidak valid, silahkan masukkan nomor game pada list.\n");
+    }
 }

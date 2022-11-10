@@ -28,7 +28,7 @@
 // #define     TAIL(q) (q).buffer[(q).idxTail]
 
 /* *** Kreator *** */
-void CreateQueue(QueueDiner *q){
+void CreateQueueDiner(Queuediner *q){
     IDX_HEAD(*q) = IDX_UNDEF;
     IDX_TAIL(*q) = IDX_UNDEF;
 }
@@ -39,18 +39,18 @@ void CreateQueue(QueueDiner *q){
 /* Proses : Melakukan alokasi, membuat sebuah q kosong */
 
 /* ********* Prototype ********* */
-boolean isEmpty(QueueDiner q){
+boolean isEmptyDiner(Queuediner q){
     return ((IDX_HEAD(q) == IDX_UNDEF) && (IDX_TAIL(q) == IDX_UNDEF));
 }
 /* Mengirim true jika q kosong: lihat definisi di atas */
-boolean isFull(QueueDiner q){
+boolean isFullDiner(Queuediner q){
     return ((CAPACITY+IDX_TAIL(q)-IDX_HEAD(q))%CAPACITY == CAPACITY-1);
 }
 /* Mengirim true jika tabel penampung elemen q sudah penuh */
 /* yaitu IDX_TAIL akan selalu di belakang IDX_HEAD dalam buffer melingkar*/
 
-int length(QueueDiner q){
-    if (isEmpty(q)){
+int lengthDiner(Queuediner q){
+    if (isEmptyDiner(q)){
         return 0;
     }
     else {
@@ -60,8 +60,8 @@ int length(QueueDiner q){
 /* Mengirimkan banyaknya elemen queue. Mengirimkan 0 jika q kosong. */
 
 /* *** Primitif Add/Delete *** */
-void enqueue(QueueDiner *q, int makanan, int durasi, int ketahanan, int harga){
-    if (isEmpty(*q)){
+void enqueueDiner(Queuediner *q, int makanan, int durasi, int ketahanan, int harga){
+    if (isEmptyDiner(*q)){
         IDX_HEAD(*q) = 0;
         IDX_TAIL(*q) = 0;
     }
@@ -77,7 +77,7 @@ void enqueue(QueueDiner *q, int makanan, int durasi, int ketahanan, int harga){
 /* I.S. q mungkin kosong, tabel penampung elemen q TIDAK penuh */
 /* F.S. val menjadi TAIL yang baru, IDX_TAIL "mundur" dalam buffer melingkar. */
 
-void dequeue(QueueDiner *q, int *makanan, int *durasi, int *ketahanan, int *harga){
+void dequeueDiner(Queuediner *q, int *makanan, int *durasi, int *ketahanan, int *harga){
     *makanan = HEAD_makanan(*q);
     *durasi = HEAD_durasi(*q);
     *ketahanan = HEAD_ketahanan(*q);
@@ -95,8 +95,8 @@ void dequeue(QueueDiner *q, int *makanan, int *durasi, int *ketahanan, int *harg
 /* F.S. val = nilai elemen HEAD pd I.S., IDX_HEAD "mundur";
         q mungkin kosong */
 
-boolean isMember(QueueDiner q, int makanan){
-    if(isEmpty(q)){
+boolean isMember(Queuediner q, int makanan){
+    if(isEmptyDiner(q)){
         return false;
     }
     else{
@@ -141,7 +141,7 @@ boolean isMember(QueueDiner q, int makanan){
    F.S : True jika makanan ada di dalam queue
 */
 
-void dequeueMember(QueueDiner *q, int *makanan, int *durasi, int *ketahanan, int *harga){
+void dequeueMember(Queuediner *q, int *makanan, int *durasi, int *ketahanan, int *harga){
     if(isMember(*q,*makanan)){
         int idx;
         boolean found = false;

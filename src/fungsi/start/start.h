@@ -3,7 +3,7 @@
 
 #include "../../ADT/array/arraydin.h"
 
-void START(ArrayDin *TabGame, boolean *start);
+void STARTPROGRAM(ArrayDin *TabGame, boolean *start);
 /*
     I.S : Sembarang
     F.S : Jika start false maka TabGame diisikan game dengan configurasi awal, dan boolean start menjadi true.

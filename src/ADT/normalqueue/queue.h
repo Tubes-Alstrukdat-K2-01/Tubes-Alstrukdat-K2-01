@@ -7,12 +7,12 @@
 #include "../boolean.h"
 #include "../word/word.h"
 #define IDX_UNDEF -1
-#define CAPACITY 100
+#define CAP 100
 
 
 /* Definisi elemen dan address */
 typedef struct {
-	Kata buffer[CAPACITY]; 
+	Kata buffer[CAP]; 
 	int idxHead;
 	int idxTail;
 } Queue;
@@ -40,7 +40,7 @@ boolean isFull(Queue q);
 /* Mengirim true jika tabel penampung elemen q sudah penuh */
 /* yaitu IDX_TAIL akan selalu di belakang IDX_HEAD dalam buffer melingkar*/
 
-int length(Queue q);
+int lengthQueue(Queue q);
 /* Mengirimkan banyaknya elemen queue. Mengirimkan 0 jika q kosong. */
 
 /* *** Primitif Add/Delete *** */
@@ -64,10 +64,5 @@ void displayQueue(Queue q);
 /* F.S. Jika q tidak kosong: [e1,e2,...,en] */
 /* Contoh : jika ada tiga elemen bernilai 1, 20, 30 akan dicetak: [1,20,30] */
 /* Jika Queue kosong : menulis [] */
-
-void CopyKata(Kata *Win, Kata *Wout);
-/*
-  Fungsi untuk menyalin semua yang ada di Win ke Wout
-*/
 
 #endif

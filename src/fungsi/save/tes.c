@@ -1,13 +1,11 @@
 #include "save.h"
+#include "../start/start.h"
 #include <stdio.h>
 
 int main(){
-    FILE *file;
-    int n = 54;
-    char *s = IntToString(n);
-    printf("%s",s);
-    file = fopen("cek.txt","w");
-    fputs(s,file);
-    fclose(file);
+    ArrayDin TabGame;
+    boolean start = false;
+    START(&TabGame,&start);
+    SAVE(TabGame,"tes.txt");
     return 0;
 }

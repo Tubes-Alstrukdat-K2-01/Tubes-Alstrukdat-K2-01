@@ -1,9 +1,9 @@
-#include "../../ADT/normalqueue/queue.h"
+#include "skipgame.h"
 
 
 void menuSkipGame(Queue *Q, int skip){
     displayQueueGame(*Q);
-    if (skip > length(*Q)){
+    if (skip > lengthQueue(*Q)){
         Kata x;
         while(!isEmpty(*Q)){
             dequeue(Q, &x);

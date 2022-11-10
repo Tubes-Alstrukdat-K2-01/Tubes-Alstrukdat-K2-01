@@ -10,12 +10,12 @@
 // #include "boolean.h"
 
 // #define IDX_UNDEF -1
-// #define CAPACITY 100
+// #define CAP 100
 
 // /* Definisi elemen dan address */
 // typedef int Kata;
 // typedef struct {
-// 	Kata buffer[CAPACITY]; 
+// 	Kata buffer[CAP]; 
 // 	int idxHead;
 // 	int idxTail;
 // } Queue;
@@ -45,17 +45,17 @@ boolean isEmpty(Queue q){
 }
 /* Mengirim true jika q kosong: lihat definisi di atas */
 boolean isFull(Queue q){
-    return ((CAPACITY+IDX_TAIL(q)-IDX_HEAD(q))%CAPACITY == CAPACITY-1);
+    return ((CAP+IDX_TAIL(q)-IDX_HEAD(q))%CAP == CAP-1);
 }
 /* Mengirim true jika tabel penampung elemen q sudah penuh */
 /* yaitu IDX_TAIL akan selalu di belakang IDX_HEAD dalam buffer melingkar*/
 
-int length(Queue q){
+int lengthQueue(Queue q){
     if (isEmpty(q)){
         return 0;
     }
     else {
-        return (((CAPACITY+IDX_TAIL(q)-IDX_HEAD(q))%CAPACITY)+1) ;
+        return (((CAP+IDX_TAIL(q)-IDX_HEAD(q))%CAP)+1) ;
     }
 }
 /* Mengirimkan banyaknya elemen queue. Mengirimkan 0 jika q kosong. */
@@ -67,22 +67,22 @@ void enqueue(Queue *q, Kata val){
         IDX_TAIL(*q) = 0;
     }
     else{
-        IDX_TAIL(*q) = (IDX_TAIL(*q)+1)%CAPACITY;
+        IDX_TAIL(*q) = (IDX_TAIL(*q)+1)%CAP;
     }
-    CopyKata(&val,&TAIL(*q));
+    TAIL(*q) = val;
 }
 /* Proses: Menambahkan val pada q dengan aturan FIFO */
 /* I.S. q mungkin kosong, tabel penampung elemen q TIDAK penuh */
 /* F.S. val menjadi TAIL yang baru, IDX_TAIL "mundur" dalam buffer melingkar. */
 
 void dequeue(Queue *q, Kata *val){
-    CopyKata(&HEAD(*q),val);
+    *val = HEAD(*q);
     if (IDX_HEAD(*q) == IDX_TAIL(*q)){
         IDX_HEAD(*q) = IDX_UNDEF;
         IDX_TAIL(*q) = IDX_UNDEF;
     }
     else {
-        IDX_HEAD(*q) = (IDX_HEAD(*q)+1)%CAPACITY;
+        IDX_HEAD(*q) = (IDX_HEAD(*q)+1)%CAP;
     }
 }
 /* Proses: Menghapus val pada q dengan aturan FIFO */
@@ -113,7 +113,7 @@ void displayQueue(Queue q){
         else {
             int j;
             printf("[");
-            for(i=IDX_HEAD(q) ; i < CAPACITY ; i++){
+            for(i=IDX_HEAD(q) ; i < CAP ; i++){
                 for(j=0; j < q.buffer[i].Length; j++){    
                     printf("%c,",q.buffer[i].Tab[j]);
                 }
@@ -138,10 +138,3 @@ void displayQueue(Queue q){
 /* Contoh : jika ada tiga elemen bernilai 1, 20, 30 akan dicetak: [1,20,30] */
 /* Jika Queue kosong : menulis [] */
 
-void CopyKata(Kata *Win, Kata *Wout){
-    (*Wout).Length = (*Win).Length;
-    int i;
-    for(i=0; (*Win).Length; i++){
-        (*Wout).Tab[i] = (*Win).Tab[i];
-    }
-}

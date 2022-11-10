@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+static FILE *file;
 char* IntToString(int n){
     int p,k;
     char* s;
@@ -33,9 +34,9 @@ char* IntToString(int n){
 }
 
 void SAVE(ArrayDin TabGame, char *filename){
-    FILE *file;
     char* loc = concat("../../../data/",filename);
     file = fopen(loc,"w");
+    printf("%d\n",file == NULL);
     char* ngame = IntToString(TabGame.Neff);
     fputs(ngame,file);
     fputs("\n",file);
@@ -44,5 +45,5 @@ void SAVE(ArrayDin TabGame, char *filename){
         fputs(TabGame.A[i].Tab,file);
         fputs("\n",file);
     }
-    fcloe(file);
+    printf("Save file berhasil disimpan.\n");
 }

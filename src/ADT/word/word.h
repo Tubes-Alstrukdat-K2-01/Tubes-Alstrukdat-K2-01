@@ -2,6 +2,7 @@
 #define __WORD__
 
 #include "../boolean.h"
+#include "../mesinkata/mesinkata.h"
 typedef struct {
     char Tab[50];
     int Length;
@@ -22,6 +23,8 @@ void MakeKata(Kata *W);
   Fungsi untuk mengkopi semua yang ada di string ke Kata
 */
 void CopyStringtoKata(Kata *W, char *s);
+
+void CopyWordtoKata(Kata *K, Word W);
 
 void CopyKata(Kata *Win, Kata *Wout);
 
