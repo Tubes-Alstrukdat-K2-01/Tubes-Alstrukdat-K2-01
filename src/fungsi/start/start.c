@@ -18,27 +18,27 @@ void START(ArrayDin *TabGame, boolean *start)
             MakeKata(&k);
             if (i == 0)
             {
-                char p[30] = "RNG";
+                char p[25] = "RNG";
                 CopyStringtoKata(&k, p);
             }
             else if (i == 1)
             {
-                char p[30] = "LUNCH SLOW";
+                char p[25] = "LUNCH SLOW";
                 CopyStringtoKata(&k, p);
             }
             else if (i == 2)
             {
-                char p[30] = "DINOSAUR IN EARTH";
+                char p[25] = "DINOSAUR IN EARTH";
                 CopyStringtoKata(&k, p);
             }
             else if (i == 3)
             {
-                char p[30] = "RISEWOMAN";
+                char p[25] = "RISEWOMAN";
                 CopyStringtoKata(&k, p);
             }
             else
             {
-                char p[30] = "EIFFEL TOWER";
+                char p[25] = "EIFFEL TOWER";
                 CopyStringtoKata(&k, p);
             }
             InsertLast(TabGame, k);
