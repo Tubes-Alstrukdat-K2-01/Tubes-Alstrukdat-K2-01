@@ -1,7 +1,7 @@
-#include "arraydin.c"
 #include <stdlib.h>
 #include <stdio.h>
-#include "../word/word.c"
+#include "arraydin.h"
+#include "../word/word.h"
 
 int main() {
     ArrayDin list;
