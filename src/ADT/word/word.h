@@ -2,11 +2,8 @@
 #define __WORD__
 
 #include "../boolean.h"
-<<<<<<< HEAD
 #include "../mesinkata/mesinkata.h"
-=======
 
->>>>>>> c396dc0dff86a720242e06fcbc3a8b6a5b085487
 typedef struct {
     char Tab[50];
     int Length;

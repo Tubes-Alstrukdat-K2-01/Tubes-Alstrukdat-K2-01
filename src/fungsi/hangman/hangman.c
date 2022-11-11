@@ -86,5 +86,4 @@ void hangman(){
         printf("Kamu kalah!\n");
         printf("Kata yang harus ditebak: %s\n", kata.Tab);
     }
-
 }
