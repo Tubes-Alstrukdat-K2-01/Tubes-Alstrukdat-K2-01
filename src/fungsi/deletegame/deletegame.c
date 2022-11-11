@@ -39,7 +39,7 @@ void DELETEGAME (ArrayDin *arrayGames){
         printf("Game gagal dihapus \n");
     }
 
-    else if (del>5){
+    else if (del>6){
         if(del <= (*arrayGames).Neff){    
             i = del-1;
             DeleteAt(arrayGames, i);
