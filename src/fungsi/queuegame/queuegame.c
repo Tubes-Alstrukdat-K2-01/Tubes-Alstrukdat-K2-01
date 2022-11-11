@@ -4,9 +4,9 @@ void displayQueueGame(Queue q){
         printf("Queue Kosong\n");
     }
     else{
-        printf("Berikut adalah daftar antriaan game-mu: \n");
-        for (int i = IDX_HEAD(q); i < IDX_TAIL(q); i++){
-            printf("%d. %s", (i - IDX_HEAD(q) + 1), q.buffer[i].Tab);
+        printf("Berikut adalah daftar antrian game-mu: \n");
+        for (int i = IDX_HEAD(q); i < IDX_TAIL(q)+1; i++){
+            printf("%d. %s\n", (i - IDX_HEAD(q) + 1), q.buffer[i].Tab);
         }
     }
 }
