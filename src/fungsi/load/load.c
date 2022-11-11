@@ -9,7 +9,7 @@ void LOAD(ArrayDin *TabGame, boolean *start, char *filename)
     else{
         MakeArrayDin(TabGame);
         FILE *file;
-        char *loc = concat("../../../data/",filename);
+        char *loc = concat("../data/",filename);
         if((file = fopen(loc,"r")) == NULL){
             printf("File Konfigurasi tidak ditemukan\n");
         }

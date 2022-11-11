@@ -71,7 +71,7 @@ int main(){
                 ADVWORD();
                 if(isEndWord()){
                     if(start){
-                        SAVE(TabGame,"testing.txt");
+                        SAVE(TabGame,filename.Tab);
                     }
                     else{
                         printf("\nProgram BNMO belum dijalankan silahkan pilih command START atau LOAD terlebih dahulu!\n");
