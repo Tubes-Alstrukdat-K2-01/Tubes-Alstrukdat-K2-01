@@ -1,0 +1,1 @@
+gcc .\src\ADT\normalqueue\driverQueue.c .\src\ADT\normalqueue\queue.c .\src\ADT\word\word.c -o .\src\ADT\normalqueue\driverQueue.exe

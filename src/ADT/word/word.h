@@ -27,8 +27,6 @@ void CopyStringtoKata(Kata *W, char *s);
 
 void CopyWordtoKata(Kata *K, Word W);
 
-void CopyKata(Kata *Win, Kata *Wout);
-
 Kata StringtoKata(char *s);
 
 boolean IsKataEqual(Kata W1, Kata W2);

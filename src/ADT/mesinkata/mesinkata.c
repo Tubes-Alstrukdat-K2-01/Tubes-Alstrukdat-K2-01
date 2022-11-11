@@ -65,7 +65,7 @@ void CopyWord()
     currentWord.Length = 0;
     while (currentChar != BLANK && currentChar != MARK)
     {
-        if (currentWord.Length < NMax)
+        if (currentWord.Length < NMax - 1) //biar ga overflow
         { // jika lebih akan terpotong
             currentWord.TabWord[currentWord.Length++] = currentChar;
             ADV();
@@ -73,6 +73,7 @@ void CopyWord()
         else
             break;
     }
+    currentWord.TabWord[currentWord.Length] = '\0';
 }
 
 boolean isEndWord() {
