@@ -40,9 +40,13 @@ void DELETEGAME (ArrayDin *arrayGames){
     }
 
     else if (del>5){
-        i = del-1;
-        DeleteAt(arrayGames, i);
-        printf("Game berhasil dihapus \n");
+        if(del <= (*arrayGames).Neff){    
+            i = del-1;
+            DeleteAt(arrayGames, i);
+            printf("Game berhasil dihapus \n");
+        }
+        else{
+            printf("Tidak ada game dengan nomor tersebut.\n");
+        }
     }
-
 }
