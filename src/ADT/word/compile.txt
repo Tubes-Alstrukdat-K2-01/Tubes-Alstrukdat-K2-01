@@ -1,0 +1,1 @@
+gcc .\src\ADT\word\driverWord.c .\src\ADT\word\word.c -o .\src\ADT\word\driverWord.exe

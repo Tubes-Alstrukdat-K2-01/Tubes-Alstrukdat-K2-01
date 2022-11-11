@@ -4,9 +4,13 @@
 void CopyKata(Kata *Win, Kata *Wout){
     (*Wout).Length = (*Win).Length;
     int i;
-    for(i=0; (*Win).Length; i++){
+    for(i=0; i < (*Win).Length; i++){
         (*Wout).Tab[i] = (*Win).Tab[i];
     }
+    (*Wout).Tab[i] = '\0';
+    for(i; i<50; i++){
+        (*Wout).Tab[i] = '\0';
+    } //jadiin null biar ga  overflow
 }
 
 void MakeKata(Kata *W){
@@ -16,7 +20,7 @@ void MakeKata(Kata *W){
 void CopyStringtoKata(Kata *W, char *s){
     MakeKata(W);
     int i=0;
-    while(s[i] != '\0' && s[i] != '\n'){
+    while( s[i] != '\0' && s[i] != '\n' ){
         (*W).Tab[i] = s[i];
         (*W).Length++; 
         i++;
