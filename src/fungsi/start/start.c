@@ -12,7 +12,7 @@ void STARTPROGRAM(ArrayDin *TabGame, boolean *start)
         *start = true;
         *TabGame = MakeArrayDin();
         int i;
-        for (i = 0; i < 5; i++)
+        for (i = 0; i < 6; i++)
         {
             Kata k;
             MakeKata(&k);
@@ -36,9 +36,13 @@ void STARTPROGRAM(ArrayDin *TabGame, boolean *start)
                 char p[25] = "RISEWOMAN";
                 CopyStringtoKata(&k, p);
             }
-            else
+            else if (i == 4)
             {
                 char p[25] = "EIFFEL TOWER";
+                CopyStringtoKata(&k, p);
+            }
+            else{
+                char p[25] = "HANGMAN";
                 CopyStringtoKata(&k, p);
             }
             InsertLast(TabGame, k);
