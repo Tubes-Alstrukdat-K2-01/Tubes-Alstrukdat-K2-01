@@ -257,7 +257,12 @@ int main(){
         else if(IsKataEqual(command,StringtoKata("QUIT"))){
             ADVWORD();
             if(isEndWord()){
-                QUIT(&running);
+                if(start){
+                    QUIT(&running);
+                }
+                else{
+                    printf("\nProgram BNMO belum dijalankan silahkan pilih command START atau LOAD terlebih dahulu!\n");
+                }
             }
             else{
                 printf("\nCommand tidak dikenali, silahkan masukkan command yang valid.\n");
