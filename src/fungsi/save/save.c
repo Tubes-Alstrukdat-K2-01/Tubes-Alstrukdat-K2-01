@@ -36,7 +36,7 @@ char* IntToString(int n){
 void SAVE(ArrayDin TabGame, char *filename){
     char* loc = concat("../data/",filename);
     file = fopen(loc,"w");
-    printf("%d\n",file == NULL);
+    // printf("%d\n",file == NULL);
     char* ngame = IntToString(TabGame.Neff);
     fputs(ngame,file);
     fputs("\n",file);
