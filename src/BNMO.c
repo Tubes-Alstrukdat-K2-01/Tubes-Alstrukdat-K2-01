@@ -282,8 +282,11 @@ int main(){
                 printf("\nCommand tidak dikenali, silahkan masukkan command yang valid.\n");
             }
             else{
-                if(IsKataEqual(command,StringtoKata("GAME"))){
-                    int skip, i;
+                Kata command2; MakeKata(&command2);
+                CopyWordtoKata(&command2,currentWord);
+                ADVWORD();
+                if(IsKataEqual(command2,StringtoKata("GAME"))){
+                    int skip = 0, i;
                     boolean integer = true;
                     for(i=0; i<currentWord.Length; i++){
                         if(currentWord.TabWord[i] >= '0' && currentWord.TabWord[i] <= '9'){
