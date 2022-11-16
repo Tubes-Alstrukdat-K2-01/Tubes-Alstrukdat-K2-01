@@ -12,7 +12,7 @@ void STARTPROGRAM(ArrayDin *TabGame, boolean *start)
         *start = true;
         *TabGame = MakeArrayDin();
         int i;
-        for (i = 0; i < 5; i++)
+        for (i = 0; i < 6; i++)
         {
             Kata k;
             MakeKata(&k);

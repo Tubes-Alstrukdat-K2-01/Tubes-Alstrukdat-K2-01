@@ -3,7 +3,7 @@
 
 void menuSkipGame(Queue *Q, int skip){
     displayQueueGame(*Q);
-    if (skip > lengthQueue(*Q)){
+    if (skip >= lengthQueue(*Q)){
         Kata x;
         while(!isEmpty(*Q)){
             dequeue(Q, &x);
@@ -15,9 +15,9 @@ void menuSkipGame(Queue *Q, int skip){
         for (int i = 0; i < skip; i++){
             dequeue(Q, &x);
         }
+        Kata Head;
+        dequeue(Q, &Head);
+        /* nunggu list game buat nge run permainan yang di head */
+        Play(Head); // PLACEHOLDER
     }
-    Kata Head;
-    dequeue(Q, &Head);
-    /* nunggu list game buat nge run permainan yang di head */
-    // Play(Head); // PLACEHOLDER
 };

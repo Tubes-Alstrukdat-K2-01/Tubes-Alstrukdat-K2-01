@@ -35,7 +35,7 @@ void DELETEGAME (ArrayDin *arrayGames){
             printf("Masukkan Invalid! Silahkan Masukkan Nomor Game Kembali : ");
         }
     }
-    if ((del>=1) && (del<=5)){
+    if ((del>=1) && (del<=6)){
         printf("Game gagal dihapus \n");
     }
 

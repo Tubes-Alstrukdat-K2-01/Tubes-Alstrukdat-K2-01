@@ -1,1 +1,0 @@
-gcc .\src\ADT\hangman\hangman.c .\src\ADT\word\word.c .\src\ADT\array\arraydin.c -o .\src\ADT\hangman\main.exe

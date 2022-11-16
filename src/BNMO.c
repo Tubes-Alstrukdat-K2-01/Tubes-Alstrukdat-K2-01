@@ -276,37 +276,45 @@ int main(){
                 }
             }
         }
-        else if(IsKataEqual(command,StringtoKata("SKIPGAME"))){
+        else if(IsKataEqual(command,StringtoKata("SKIP"))){
             ADVWORD();
             if(isEndWord()){
                 printf("\nCommand tidak dikenali, silahkan masukkan command yang valid.\n");
             }
             else{
-                int skip, i;
-                boolean integer = true;
-                for(i=0; i<currentWord.Length; i++){
-                    if(currentWord.TabWord[i] >= '0' && currentWord.TabWord[i] <= '9'){
-                        skip *= 10;
-                        skip += (int)(currentWord.TabWord[i]-48);
-                    }
-                    else{
-                        integer = false;   
-                    }
-                }
+                Kata command2; MakeKata(&command2);
+                CopyWordtoKata(&command2,currentWord);
                 ADVWORD();
-                if(isEndWord() && integer){
-                    if(start){
-                        menuSkipGame(&QGame, skip);
+                if(IsKataEqual(command2,StringtoKata("GAME"))){
+                    int skip = 0, i;
+                    boolean integer = true;
+                    for(i=0; i<currentWord.Length; i++){
+                        if(currentWord.TabWord[i] >= '0' && currentWord.TabWord[i] <= '9'){
+                            skip *= 10;
+                            skip += (int)(currentWord.TabWord[i]-48);
+                        }
+                        else{
+                            integer = false;   
+                        }
+                    }
+                    ADVWORD();
+                    if(isEndWord() && integer){
+                        if(start){
+                            menuSkipGame(&QGame, skip);
+                        }
+                        else{
+                            printf("\nProgram BNMO belum dijalankan silahkan pilih command START atau LOAD terlebih dahulu!\n");
+                        }
                     }
                     else{
-                        printf("\nProgram BNMO belum dijalankan silahkan pilih command START atau LOAD terlebih dahulu!\n");
+                        printf("\nCommand tidak dikenali, silahkan masukkan command yang valid.\n");
+                        while(!isEndWord()){
+                            ADVWORD();
+                        }
                     }
                 }
                 else{
-                    printf("\nCommand tidak dikenali, silahkan masukkan command yang valid.\n");
-                    while(!isEndWord()){
-                        ADVWORD();
-                    }
+                    printf("\nProgram BNMO belum dijalankan silahkan pilih command START atau LOAD terlebih dahulu!\n");
                 }
             }
         }
