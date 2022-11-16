@@ -5,7 +5,6 @@ void menuPlayGame(Queue *Q){
     if (!isEmpty(*Q)){
         Kata Head;
         dequeue(Q, &Head);
-        printf("%s\n",Head.Tab);
         /* nunggu list game buat nge run permainan yang di head */
         Play(Head); // PLACEHOLDER
     }
@@ -15,23 +14,24 @@ void menuPlayGame(Queue *Q){
 }
 void Play(Kata W){
     if  (IsKataEqual(W, StringtoKata("RNG"))){
-        printf("Loading game RNG...\n");
+        printf("\nLoading game RNG...\n");
         RNG();
     } else if (IsKataEqual(W, StringtoKata("DINER DASH"))){
-        printf("Loading game Dinner Dash...\n");
+        printf("\nLoading game Dinner Dash...\n");
         dinerdash();
     } else if (IsKataEqual(W, StringtoKata("HANGMAN"))){
-        printf("Loading game HANGMAN...\n");
+        printf("\nLoading game HANGMAN...\n");
         hangman();
     } else if (IsKataEqual(W, StringtoKata("DINOSAUR IN EARTH"))){
-        printf("Game DINOSAUR IN EARTH masih dalam maintenance, belum dapat dimainkan. Silahkan pilih game lain.\n");
+        printf("\nGame DINOSAUR IN EARTH masih dalam maintenance, belum dapat dimainkan. Silahkan pilih game lain.\n");
     } else if (IsKataEqual(W, StringtoKata("RISEWOMAN"))){
-        printf("Game RISEWOMAN masih dalam maintenance, belum dapat dimainkan. Silahkan pilih game lain.\n");
+        printf("\nGame RISEWOMAN masih dalam maintenance, belum dapat dimainkan. Silahkan pilih game lain.\n");
     } else if (IsKataEqual(W, StringtoKata("EIFFEL TOWER"))){
-        printf("Game EIFFEL TOWER masih dalam maintenance, belum dapat dimainkan. Silahkan pilih game lain.\n");
+        printf("\nGame EIFFEL TOWER masih dalam maintenance, belum dapat dimainkan. Silahkan pilih game lain.\n");
     } else {
         srand(time(0));
         int skor = (rand()*3)%100 + 1;
+        printf("\nLoading %s...\n",W.Tab);
         printf("Skor Akhir dari game %s adalah %d\n",W.Tab,skor);
     }
 }
